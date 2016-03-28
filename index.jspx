@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document   : index
+    Created on : 2016年3月28日, 下午02:55:06
+    Author     : samsung-pc
+-->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html" pageEncoding="UTF-8"/>
+    <jsp:element name="body">
+        <jsp:element name="h1">
+            <jsp:body>Welcome to Toy Market !</jsp:body>
+        </jsp:element>
+            <jsp:element name="a">
+                <jsp:attribute name="href">
+                    <jsp:body>browse.jsp</jsp:body>
+                </jsp:attribute>
+                    <jsp:body>Click here to browse toy!</jsp:body>
+            </jsp:element>
+    </jsp:element>
+</jsp:root>
