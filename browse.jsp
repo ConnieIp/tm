@@ -55,10 +55,10 @@
                 rs = stmt.executeQuery("SELECT * FROM [ToyMarket] WHERE [Gender] IN ('M','B') ORDER BY [ToyID] ASC");
             }
             else if (category.equalsIgnoreCase("child")){
-                rs = stmt.executeQuery("SELECT * FROM [ToyMarket] WHERE [Age] > 3 OR [Age] = -9 ORDER BY [ToyID] ASC");
+                rs = stmt.executeQuery("SELECT * FROM [ToyMarket] WHERE [Age] > 3 OR [Age] = 0 ORDER BY [ToyID] ASC");
             }
             else if (category.equalsIgnoreCase("baby")){
-                rs = stmt.executeQuery("SELECT * FROM [ToyMarket] WHERE [Age] BETWEEN 0 AND 3 OR [AGE] = -9 ORDER BY [ToyID] ASC");
+                rs = stmt.executeQuery("SELECT * FROM [ToyMarket] WHERE [Age] BETWEEN 0 AND 3 OR [AGE] = 0 ORDER BY [ToyID] ASC");
             }
             else{
                 rs = stmt.executeQuery("SELECT * FROM [ToyMarket] ORDER BY [ToyID] ASC");
