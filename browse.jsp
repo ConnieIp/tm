@@ -23,6 +23,9 @@
         <legend>Toy Directoy</legend>
         <%
         try {
+			int userid=1; //develop later
+			String userType="M";//develop later
+						
             String category=request.getParameter("category");
             if (category == null || category.equalsIgnoreCase("") ) {
                 category="all";
@@ -46,16 +49,16 @@
             ResultSet rs;
             
             if (category.equalsIgnoreCase("girl")){
-                rs = stmt.executeQuery("SELECT * FROM [ToyMarket] WHERE [Gender] = 'F' ORDER BY [ToyID] ASC");
+                rs = stmt.executeQuery("SELECT * FROM [ToyMarket] WHERE [Gender] IN ('F','B') ORDER BY [ToyID] ASC");
             }
             else if (category.equalsIgnoreCase("boy")){
-                rs = stmt.executeQuery("SELECT * FROM [ToyMarket] WHERE [Gender] = 'M' ORDER BY [ToyID] ASC");
+                rs = stmt.executeQuery("SELECT * FROM [ToyMarket] WHERE [Gender] IN ('M','B') ORDER BY [ToyID] ASC");
             }
             else if (category.equalsIgnoreCase("child")){
-                rs = stmt.executeQuery("SELECT * FROM [ToyMarket] WHERE [Age] > 3 ORDER BY [ToyID] ASC");
+                rs = stmt.executeQuery("SELECT * FROM [ToyMarket] WHERE [Age] > 3 OR [Age] = -9 ORDER BY [ToyID] ASC");
             }
             else if (category.equalsIgnoreCase("baby")){
-                rs = stmt.executeQuery("SELECT * FROM [ToyMarket] WHERE [Age] < 4 ORDER BY [ToyID] ASC");
+                rs = stmt.executeQuery("SELECT * FROM [ToyMarket] WHERE [Age] BETWEEN 0 AND 3 OR [AGE] = -9 ORDER BY [ToyID] ASC");
             }
             else{
                 rs = stmt.executeQuery("SELECT * FROM [ToyMarket] ORDER BY [ToyID] ASC");
@@ -86,12 +89,15 @@
                 <td><%= type %></td>
                 <td><%= qty %></td>
                 <td><%= cost %></td>
+		<%
+				if(userType.equalsIgnoreCase("M")){
+		%>
                 <td>
-                    <a href='<%= request.getContextPath() %>/update.jsp?uid=<%= toyid %>'>Update</a>
-                    <a href='<%= request.getContextPath() %>/delete.jsp?uid=<%= toyid %>'>Delete</a>
+                    <a href='<%= request.getContextPath() %>/updateToy.jsp?uid=<%= toyid %>'>Update</a>
+                    <a href='<%= request.getContextPath() %>/deleteToy.jsp?uid=<%= toyid %>'>Delete</a>
                 </td>
-            </tr>
         <%
+				}
             }
             if (rs != null) {
                 rs.close();
@@ -103,9 +109,10 @@
                 con.close();
             }
         %>
+			</tr>
         </tbody>
         </table></div>
-        <br/><a href='<%= request.getContextPath() %>/create.jsp'>Add a New Toy</a>
+        <br/><a href='<%= request.getContextPath() %>/addToy.jsp'>Add a New Toy</a>
         <%
         }
         catch (NamingException e) {
@@ -121,4 +128,4 @@
         </fieldset>
         </div>
     </body>
-</html>
+</html></html>
