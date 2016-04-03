@@ -68,7 +68,7 @@
                 <p>Owner: <%= owner %></p>
                 <br/><a href='<%= request.getContextPath() %>/shoppingcart.jsp?toyid=<%=toyid %>'>Add to cart</a>
             
-            <br/><a href='<%= request.getContextPath() %>/browse.jsp'>Back to Toy Directory</a>
+            <br/><a href='javascript:history.back(1)'>Back to Toy Directory</a>
             
         <%
         }
