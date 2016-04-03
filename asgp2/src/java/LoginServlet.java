@@ -48,12 +48,12 @@ public class LoginServlet extends HttpServlet {
                     gppw="admin";
                 }
                     
-                        //out.println("<script type='text/javascript'>");
-			//		out.println("function formSubmit(){");
-			//		out.println("document.forms['myform'].submit();");
-			//		out.println("}");
-			//		out.println("</script>");
-					out.println("<form action='j_security_check' method='POST'>");
+                        out.println("<script type='text/javascript'>");
+					out.println("function formSubmit(){");
+					out.println("document.getElementById('login').submit();");
+					out.println("}");
+					out.println("</script>");
+					out.println("<form id='login' action='j_security_check' method='POST' >");
                                         //out.println("  <input type='hidden' name='name' value='"+name+"'/>");
 					//out.println("  <input type='hidden' name='userid' value='"+userid+"'/>");
 					//out.println("  <input type='hidden' name='password' value='"+userpw+"'/>");
@@ -61,6 +61,7 @@ public class LoginServlet extends HttpServlet {
 					out.println("  <p>Password: <input type='password'  name='j_password' id='j_password' value='"+gppw+"'/></p>");
 					out.println("  <p><input type='submit' value='Login' /></p>");
 					out.println("</form>");
+                                        out.println("<script>formSubmit();</script>");
 			out.println("</body>");
 			out.println("</html>");
             out.close();

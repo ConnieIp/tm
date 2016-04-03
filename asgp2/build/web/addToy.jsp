@@ -82,7 +82,7 @@
 		pstmt_insert.setString(11, recycle);
 
                 int rows = pstmt_insert.executeUpdate();
-
+                int toyid=0;
                 if (rows > 0) {
         %>
             <legend>New toy is sucessfully added.</legend>
@@ -91,7 +91,7 @@
                     pstmt_chkAdd.setInt(1, toyCount+1);
                     ResultSet rs_chkAdd = pstmt_chkAdd.executeQuery();
                     if (rs_chkAdd != null && rs_chkAdd.next() != false) {
-                        int toyid=rs_chkAdd.getInt("ToyID");
+                        toyid=rs_chkAdd.getInt("ToyID");
         %>
             <p>ToyID: <%= toyid %></p>
         <%
@@ -102,6 +102,12 @@
         <%
                     if (pstmt_chkAdd != null) {
                         pstmt_chkAdd.close();
+                    }
+                    if (recycle.equalsIgnoreCase("Y")){
+                    PreparedStatement pstmt_approved = con.prepareStatement("INSERT INTO [ToyRecycle] ([ToyID],[Approved]) VALUES (?, ?)");
+                    pstmt_approved.setInt(1, toyid);
+                    pstmt_approved.setString(2, "N");
+                    int rows1 = pstmt_approved.executeUpdate();
                     }
                 }
                 else {
@@ -168,9 +174,9 @@
                 <p>Image Path:
                 <input name='img' type='text' size='100' maxlength='100' value='<%= img %>' /></p>
 		<%
-		if (userType.equalsIgnoreCase("M")){
+		if (userType.equalsIgnoreCase("admin")){
 		%>
-                <input name='owner' type='hidden' value='Toy Market' />
+                <input name='owner' type='hidden' value='0' />
 		<p>Owner: Toy Market</p>
 		<%
 		}
