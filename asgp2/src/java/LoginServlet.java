@@ -21,6 +21,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class LoginServlet extends HttpServlet {
    
@@ -34,9 +35,19 @@ public class LoginServlet extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         out.println("<h1>Login Page</h1>");
-		String usergp="user";
-                String gppw="user";
-		
+		String usergp="";
+                String gppw="";
+		HttpSession session=request.getSession();
+                if (session.getAttribute("role").equals("user")){
+                    usergp="user";
+                    gppw="user";
+                }
+                else
+                {
+                    usergp="admin";
+                    gppw="admin";
+                }
+                    
                         //out.println("<script type='text/javascript'>");
 			//		out.println("function formSubmit(){");
 			//		out.println("document.forms['myform'].submit();");

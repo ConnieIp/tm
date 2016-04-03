@@ -26,8 +26,6 @@ public class HomeServlet extends HttpServlet {
 			session.setAttribute("magic",1);
 		}
 		
-		session.setAttribute("Logined", new Boolean(true));
-		
 		response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 		

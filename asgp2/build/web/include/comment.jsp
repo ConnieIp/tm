@@ -9,17 +9,22 @@
 <%@page import="java.sql.Connection, javax.sql.DataSource, java.sql.PreparedStatement" %>
 <%@page import="java.sql.ResultSet, java.sql.Statement" %>
 <%@page import="java.sql.SQLException, javax.naming.NamingException" %>
+<%@page import="javax.servlet.http.HttpServlet" %>"
+<%@page import="javax.servlet.http.HttpServletRequest" %>"
+<%@page import="javax.servlet.http.HttpServletResponse" %>"
+<%@page import="javax.servlet.http.HttpSession" %>"
 <br /><br />
 <hr style="width: 100%" />
 <p>Comment
     <%
-		int userID=2; //development later
+	
+        int userID=2; //development later
 		String userType="M"; //develop later
 		
         int toyid=Integer.parseInt(request.getParameter("toyid"));       
 		
 		
-		Context initCtx = new InitialContext();
+	Context initCtx = new InitialContext();
         Context envCtx = (Context)initCtx.lookup("java:comp/env");
         DataSource ds = (DataSource)envCtx.lookup("jdbc/asgp2");
         Connection con = ds.getConnection();
