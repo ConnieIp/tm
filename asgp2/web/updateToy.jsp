@@ -23,8 +23,10 @@
         <fieldset>
         <%
         try {
-            int userID=1; //development later
-            String userType="M"; //develop later
+            int userID=Integer.parseInt((String) session.getAttribute("userid"));
+            String userType=(String) session.getAttribute("role");
+            //int userID=1; //development later
+            //String userType="M"; //develop later
 		
             int toyid = Integer.parseInt(request.getParameter("toyid"));
 			

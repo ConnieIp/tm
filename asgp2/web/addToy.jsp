@@ -22,8 +22,10 @@
         <fieldset>
         <%
         try {
-            int userID=1; //development later
-            String userType="M"; //develop later
+            int userID=Integer.parseInt((String) session.getAttribute("userid"));
+            String userType=(String) session.getAttribute("role");
+            //int userID=1; //development later
+            //String userType="M"; //develop later
 		
             Context initCtx = new InitialContext();
             Context envCtx = (Context)initCtx.lookup("java:comp/env");
@@ -89,7 +91,7 @@
                     pstmt_chkAdd.setInt(1, toyCount+1);
                     ResultSet rs_chkAdd = pstmt_chkAdd.executeQuery();
                     if (rs_chkAdd != null && rs_chkAdd.next() != false) {
-                        int toyid=rs.getInt("ToyID");
+                        int toyid=rs_chkAdd.getInt("ToyID");
         %>
             <p>ToyID: <%= toyid %></p>
         <%
