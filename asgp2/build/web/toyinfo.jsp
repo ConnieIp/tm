@@ -15,11 +15,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/default.css" rel="stylesheet" type="text/css">
         <title>Toy information</title>
     </head>
     <body>
         <h1>Toy Information</h1>
-        <div style='width:600px'>
+        <div class="formContainer">
         <fieldset>
         <%
             int toyid=Integer.parseInt(request.getParameter("toyid"));

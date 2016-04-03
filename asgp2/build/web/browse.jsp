@@ -14,11 +14,12 @@
 <html>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="css/default.css" rel="stylesheet" type="text/css">
     <title>Browse toy</title>
     </head>
     <body>
         <h1>Browse Toy</h1>
-        <div style='width:600px'>
+        <div class="formContainer">
         <fieldset>
         <legend>Toy Directoy</legend>
         <%

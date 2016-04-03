@@ -14,11 +14,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="css/default.css" rel="stylesheet" type="text/css">
         <title>Add Toy</title>
     </head>
     <body>
         <h1>Add Toy</h1>
-        <div style='width:600px'>
+        <div class="formContainer">
         <fieldset>
         <%
         try {
@@ -194,7 +195,7 @@
             <%
             }
             %>
-            <br/><a href='<%= request.getContextPath() %>'>Back to Toy Directory</a>
+            <br/><a href='<%= request.getContextPath() %>/browse.jsp'>Back to Toy Directory</a>
         <%
         }
         catch (NamingException e) {
