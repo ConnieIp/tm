@@ -4,6 +4,9 @@
     Author     : samsung-pc
 --%>
 
+<%@page import="java.awt.event.ActionEvent"%>
+<%@page import="java.awt.event.ActionListener"%>
+<%@page import="javax.swing.JButton"%>
 <%@page import="java.sql.Connection, javax.sql.DataSource, java.sql.PreparedStatement" %>
 <%@page import="java.sql.ResultSet, java.sql.Statement" %>
 <%@page import="java.sql.SQLException, javax.naming.NamingException" %>
@@ -33,6 +36,11 @@
             previousItems.add(toyid);
             session.setAttribute("previousItems",previousItems);
             }
+            if (request.getParameter("action")!=null && request.getParameter("action").equals("clearCart")){
+                session.setAttribute("previousItems",null);
+                previousItems=new ArrayList<Integer>();
+                session.setAttribute("previosItems", previousItems);
+            }
             
             Context initCtx = new InitialContext();
             Context envCtx = (Context)initCtx.lookup("java:comp/env");
@@ -41,13 +49,14 @@
             %>
             <table style='width:100%'>
                 <thead>
-                <th>ToyID</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Price</th>
-                <th>Owner</th>
-                <th>Recycle</th>
+                <th align='left'>ToyID</th>
+                <th align='left'>Name</th>
+                <th align='left'>Type</th>
+                <th align='left'>Age</th>
+                <th align='left'>Gender</th>
+                <th align='left'>Price</th>
+                <th align='left'>Owner</th>
+                <th align='left'>Recycle</th>
                 </thead>
                 <tbody>
             <%
@@ -64,11 +73,11 @@
                     String desc = rs_get.getString("Description");
                     String qty = String.valueOf(rs_get.getInt("Qty"));
                     String cost = rs_get.getString("Cost");
-                    String price = rs_get.getString("Price");
+                    float price = rs_get.getFloat("Price");
                     String owner = rs_get.getString("Owner");
                     String recycle = rs_get.getString("Recycle");
                     
-                    totalPrice+=Integer.parseInt(price.split(".")[0])+0.1*Integer.parseInt(price.split(".")[1]);
+                    totalPrice+=price;
                 %>
                 <tr>
                     <td><%= p %></td>
@@ -82,6 +91,7 @@
                 </tr>
                 <%
             }
+            }
             %>
             </tbody>
             </table>      
@@ -91,8 +101,15 @@
             <input name='withdrawal' type='hidden' value='<%= totalPrice %>' />
             <input type='submit' value='Submit' />
             </form>
+            <br />
+            <form method='POST' action='<%= request.getRequestURI() %>?toyid=<%= toyid %>' >
+            <input name='action' type='hidden' value='clearCart' />
+            <input type='submit' value='Reset' />
+            </form>
+            <br/>
+            <a href="<%= request.getContextPath() %>/toyinfo.jsp?toyid=<%= toyid %>">Back to Toy Information page</a>
             <%
-                }
+            
             %>
     </body>
 </html>
