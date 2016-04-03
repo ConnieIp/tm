@@ -22,10 +22,19 @@
         <fieldset>
         <legend>Toy Directoy</legend>
         <%
+		
         try {
 			int userid=1; //develop later
 			String userType="M";//develop later
-						
+			
+			//HttpSession session=request.getSession();
+		
+			//if(session.getAttribute("logined") == null){
+			//	userType="O";
+			//}
+			
+			//isUserInRole?
+			
             String category=request.getParameter("category");
             if (category == null || category.equalsIgnoreCase("") ) {
                 category="all";
@@ -73,7 +82,7 @@
         %>
         <div><table style='width:100%'>
         <thead>
-        <th align='left'>Name</th><th align='left'>Type</th><th align='left'>Qty</th><th align='left'>Toy Price</th><th align='left'>Action</th>
+        <th align='left'>ToyID</th><th align='left'>Name</th><th align='left'>Type</th><th align='left'>Qty</th><th align='left'>Toy Price</th><th align='left'>Action</th>
         </thead>
         <tbody>
         <%
@@ -85,6 +94,7 @@
                 String toyid = rs.getString("ToyID");
         %>
             <tr>
+                <td><%= toyid %></td>
                 <td><a href='<%= request.getContextPath() %>/toyinfo.jsp?toyid=<%= toyid %>'><%= name %></a></td>
                 <td><%= type %></td>
                 <td><%= qty %></td>
@@ -93,8 +103,8 @@
 				if(userType.equalsIgnoreCase("M")){
 		%>
                 <td>
-                    <a href='<%= request.getContextPath() %>/updateToy.jsp?uid=<%= toyid %>'>Update</a>
-                    <a href='<%= request.getContextPath() %>/deleteToy.jsp?uid=<%= toyid %>'>Delete</a>
+                    <a href='<%= request.getContextPath() %>/updateToy.jsp?toyid=<%= toyid %>'>Update</a>
+                    <a href='<%= request.getContextPath() %>/deleteToy.jsp?toyid=<%= toyid %>'>Delete</a>
                 </td>
         <%
 				}
