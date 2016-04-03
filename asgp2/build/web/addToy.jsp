@@ -91,7 +91,7 @@
                     pstmt_chkAdd.setInt(1, toyCount+1);
                     ResultSet rs_chkAdd = pstmt_chkAdd.executeQuery();
                     if (rs_chkAdd != null && rs_chkAdd.next() != false) {
-                        int toyid=rs.getInt("ToyID");
+                        int toyid=rs_chkAdd.getInt("ToyID");
         %>
             <p>ToyID: <%= toyid %></p>
         <%
