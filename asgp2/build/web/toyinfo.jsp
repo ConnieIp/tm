@@ -66,7 +66,7 @@
                 <p>Qty: <%= qty %></p>
                 <p>Price: <%= price %></p>
                 <p>Owner: <%= owner %></p>
-            </form>
+            
             
             <br/><a href='<%= request.getContextPath() %>/browse.jsp'>Back to Toy Directory</a>
         <%

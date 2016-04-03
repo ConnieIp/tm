@@ -24,9 +24,11 @@
         <%
 		
         try {
-			int userid=1; //develop later
-			String userType="M";//develop later
-			
+			//int userid=1; //develop later
+			//String userType="M";//develop later
+			int userid=Integer.parseInt((String) session.getAttribute("userid"));
+                        String userType=(String) session.getAttribute("role");
+        
 			//HttpSession session=request.getSession();
 		
 			//if(session.getAttribute("logined") == null){
@@ -82,7 +84,14 @@
         %>
         <div><table style='width:100%'>
         <thead>
-        <th align='left'>ToyID</th><th align='left'>Name</th><th align='left'>Type</th><th align='left'>Qty</th><th align='left'>Toy Price</th><th align='left'>Action</th>
+        <th align='left'>ToyID</th><th align='left'>Name</th><th align='left'>Type</th><th align='left'>Qty</th><th align='left'>Toy Price</th>
+        <%
+	if(userType.equalsIgnoreCase("admin")){
+	%>
+        <th align='left'>Action</th>
+        <%
+            }
+        %>
         </thead>
         <tbody>
         <%
@@ -100,7 +109,7 @@
                 <td><%= qty %></td>
                 <td><%= cost %></td>
 		<%
-				if(userType.equalsIgnoreCase("M")){
+				if(userType.equalsIgnoreCase("admin")){
 		%>
                 <td>
                     <a href='<%= request.getContextPath() %>/updateToy.jsp?toyid=<%= toyid %>'>Update</a>

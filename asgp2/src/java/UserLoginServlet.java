@@ -84,6 +84,7 @@ out.println("<p>"+userid+"</p>");
 					if(userpw.equals(password) && usergp.equals(role)){
                                             HttpSession session=request.getSession();
                                             session.setAttribute("name", name);
+                                            session.setAttribute("userid",userid); //
                                             session.setAttribute("role", role);
                                             response.sendRedirect("index.do");                                            
                                         }else{

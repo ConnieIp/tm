@@ -17,9 +17,10 @@
 <hr style="width: 100%" />
 <p>Comment
     <%
-	
-        int userID=2; //development later
-		String userType="M"; //develop later
+        int userID=Integer.parseInt((String) session.getAttribute("userid"));
+        String userType=(String) session.getAttribute("role");
+        //int userID=2; //development later
+	//String userType="M"; //develop later
 		
         int toyid=Integer.parseInt(request.getParameter("toyid"));       
 		
@@ -29,7 +30,7 @@
         DataSource ds = (DataSource)envCtx.lookup("jdbc/asgp2");
         Connection con = ds.getConnection();
 		
-		if(userType.equalsIgnoreCase("M")){
+		if(userType.equalsIgnoreCase("admin")){
 			String reCommentID=request.getParameter("reCommentID");
 			String newReply=request.getParameter("newReply");
 			if (newReply != null && !newReply.equalsIgnoreCase("Reply here...") && !newReply.equalsIgnoreCase("") &&
@@ -126,7 +127,7 @@
                 <td><%= comment %></td>
                 <td><%= commentDate %></td>
                 <%
-                    if(userType.equalsIgnoreCase("M") || userid.equalsIgnoreCase(String.valueOf(userID))){
+                    if(userType.equalsIgnoreCase("admin") || userid.equalsIgnoreCase(String.valueOf(userID))){
                 %>
                 <td>
                 <form method='POST' action='<%= request.getContextPath() %>/deleteComment.jsp?toyid=<%= toyid %>' >
@@ -164,7 +165,7 @@
                 <td><%= reply %></td>
                 <td><%= commentDate %></td>
                 <%
-                    if(userType.equalsIgnoreCase("M")){
+                    if(userType.equalsIgnoreCase("admin")){
                 %>
                 <td>
                 <form method='POST' action='<%= request.getContextPath() %>/deleteComment.jsp?toyid=<%= toyid %>' >
@@ -179,7 +180,7 @@
             </tr>
                 <%
                 }
-			if(userType.equalsIgnoreCase("M")){
+			if(userType.equalsIgnoreCase("admin")){
 			
         %>
             <tr>
@@ -196,7 +197,7 @@
 			}
         }
 		
-		if (!userType.equalsIgnoreCase("M")){
+		if (!userType.equalsIgnoreCase("admin")){
 		%>
                 <tr>
                     <td colspan="5">
