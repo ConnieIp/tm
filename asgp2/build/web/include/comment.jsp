@@ -15,7 +15,7 @@
 <%@page import="javax.servlet.http.HttpSession" %>"
 <br /><br />
 <hr style="width: 100%" />
-<p>Comment
+<p>Comment</p>
     <%
         int userID=Integer.parseInt((String) session.getAttribute("userid"));
         String userType=(String) session.getAttribute("role");
@@ -55,11 +55,11 @@
 					int rows = pstmt_add.executeUpdate();
 					if (rows > 0) {
 				%>
-					<legend>New reply is sucessfully added. 
+					<p>New reply is sucessfully added. </p>
                                             <form method='POST' action='<%= request.getContextPath() %>/toyinfo.jsp?toyid=<%= toyid %>' >
                                                 <input type='submit' value='Refresh' />
                                             </form>
-                                        </legend>
+                                        
 				<%
 					}
 				}
@@ -86,7 +86,7 @@
 					int rows = pstmt_add.executeUpdate();
 					if (rows > 0) {
 				%>
-					<legend>New comment is sucessfully added.</legend>
+					<p>New comment is sucessfully added.</p>
 				<%
 					}
 				}
@@ -211,4 +211,3 @@
 		<%
 		}
 		%>
-</p>

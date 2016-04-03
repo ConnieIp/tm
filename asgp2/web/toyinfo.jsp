@@ -66,9 +66,10 @@
                 <p>Qty: <%= qty %></p>
                 <p>Price: <%= price %></p>
                 <p>Owner: <%= owner %></p>
-            
+                <br/><a href='<%= request.getContextPath() %>/shoppingcart.jsp?toyid=<%=toyid %>'>Add to cart</a>
             
             <br/><a href='<%= request.getContextPath() %>/browse.jsp'>Back to Toy Directory</a>
+            
         <%
         }
         catch (NamingException e) {

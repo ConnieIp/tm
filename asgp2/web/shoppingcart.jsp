@@ -28,8 +28,10 @@
                 previousItems=new ArrayList<Integer>();
                 session.setAttribute("previosItems", previousItems);
             }
+            if(toyid!=0){
             previousItems.add(toyid);
             session.setAttribute("previousItems",previousItems);
+            }
             
             Context initCtx = new InitialContext();
             Context envCtx = (Context)initCtx.lookup("java:comp/env");
@@ -65,7 +67,7 @@
                     String owner = rs_get.getString("Owner");
                     String recycle = rs_get.getString("Recycle");
                     
-                    totalPrice+=Integer.parseInt(price);
+                    totalPrice+=Integer.parseInt(price.split(".")[0])+0.1*Integer.parseInt(price.split(".")[1]);
                 %>
                 <tr>
                     <td><%= p %></td>
@@ -83,7 +85,7 @@
             </tbody>
             </table>      
             <p>Total: <%= totalPrice %>
-            <form method='POST' action='<%= request.getRequestURI() %>' >
+            <form method='POST' action='<%= request.getContextPath() %>/pay.jsp' >
             <input name='action' type='hidden' value='pay' />
             <input name='withdrawal' type='hidden' value='<%= totalPrice %>' />
             <input type='submit' value='Submit' />
