@@ -11,18 +11,20 @@
 <%@page import="javax.naming.Context"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="aOrderBean" class="com.shoppingcart.ShoppingCartOrderBean" scope="request" />
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/default.css" rel="stylesheet" type="text/css">
+        <link href="style/default.css" rel="stylesheet" type="text/css">
         <title>Shopping Cart</title>
     </head>
     <body>
         <h1>Pay</h1>
         <%
             int userID=Integer.parseInt((String) session.getAttribute("userid"));
-            int toyid=Integer.parseInt(request.getParameter("toyid"));
+            int toyid=aOrderBean.getToyID();
+//            int toyid=Integer.parseInt(request.getParameter("toyid"));    //bug, used beans above to replace this
             int transactionPrice=Integer.parseInt(request.getParameter("withdrawal"));
             if (transactionPrice != 0){
                 Context initCtx = new InitialContext();
@@ -47,7 +49,8 @@
                             String cost = rs_get.getString("Cost");
                             String price = rs_get.getString("Price");
                             String owner = rs_get.getString("Owner");
-                            if(!owner.equalsIgnoreCase("0")){
+                            if(owner != null && owner != ""){
+//                            if(!owner.equalsIgnoreCase("0") && !owner.equals(null) && !owner.equals("")){ //bug
                                 PreparedStatement pstmt_adddep = con.prepareStatement("Insert into [UserBalance] ([UserID] , [Withdrawal], [Deposit], [Date]) values ( ? , ? , ?, current_timestamp)");
                                 pstmt_adddep.setString(1, String.valueOf(userID));
                                 pstmt_adddep.setInt(2,0);
@@ -66,8 +69,13 @@
                     int deposit = rs_chkBal.getInt("Deposit");
                     balance=balance-withdrawal+deposit;
 		}
+                 
+                if (con != null) {
+                    con.close();
+                }
                 %>
                 <p>Balance:<%= balance %></p>
+                <a href="<%= request.getContextPath() %>/toyinfo.jsp?toyid=<%= toyid %>">Back to Toy Information page</a>
                 <%
                 }
             }

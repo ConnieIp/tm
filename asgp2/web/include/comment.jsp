@@ -13,6 +13,7 @@
 <%@page import="javax.servlet.http.HttpServletRequest" %>"
 <%@page import="javax.servlet.http.HttpServletResponse" %>"
 <%@page import="javax.servlet.http.HttpSession" %>"
+<jsp:useBean id="aOrderBean" class="com.shoppingcart.ShoppingCartOrderBean" scope="request" />
 <br /><br />
 <hr style="width: 100%" />
 <p>Comment</p>
@@ -21,8 +22,13 @@
         String userType=(String) session.getAttribute("role");
         //int userID=2; //development later
 	//String userType="M"; //develop later
-		
-        int toyid=Integer.parseInt(request.getParameter("toyid"));       
+        int toyid = 0;
+        if (request.getParameter("toyid")==null) {
+            toyid=aOrderBean.getToyID();
+        } else {
+            toyid=Integer.parseInt(request.getParameter("toyid"));
+        }
+//        int toyid=Integer.parseInt(request.getParameter("toyid"));       
 		
 		
 	Context initCtx = new InitialContext();
@@ -209,5 +215,8 @@
                     </td>
                 </tr>
 		<%
-		}
+		} 
+                if (con != null) {
+                    con.close();
+                }
 		%>

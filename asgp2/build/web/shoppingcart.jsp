@@ -18,7 +18,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/default.css" rel="stylesheet" type="text/css">
+        <link href="style/default.css" rel="stylesheet" type="text/css">
         <title>Shopping Cart</title>
     </head>
     <body>
@@ -106,10 +106,14 @@
             <input name='action' type='hidden' value='clearCart' />
             <input type='submit' value='Reset' />
             </form>
+            <jsp:useBean id="aOrderBean" class="com.shoppingcart.ShoppingCartOrderBean" scope="request" />
+            <jsp:setProperty name="aOrderBean" property="*" />
             <br/>
             <a href="<%= request.getContextPath() %>/toyinfo.jsp?toyid=<%= toyid %>">Back to Toy Information page</a>
             <%
-            
+                if (con != null) {
+                    con.close();
+                }
             %>
     </body>
 </html>

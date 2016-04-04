@@ -3,7 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/PP_file/CS4280/NetBeansProjects/tm/asgp2/web/toyinfo.jsp</file>
+            <file>file:/C:/PP_file/CS4280/NetBeansProjects/tm/asgp2/src/java/com/shoppingcart/ShoppingCartOrderBean.java</file>
+            <file>file:/C:/PP_file/CS4280/NetBeansProjects/tm/asgp2/web/pay.jsp</file>
+            <file>file:/C:/PP_file/CS4280/NetBeansProjects/tm/asgp2/web/shoppingcart.jsp</file>
         </group>
     </open-files>
 </project-private>

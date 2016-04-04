@@ -10,12 +10,13 @@
 <%@page import="java.sql.Connection, javax.sql.DataSource, java.sql.PreparedStatement" %>
 <%@page import="java.sql.ResultSet, java.sql.Statement" %>
 <%@page import="java.sql.SQLException, javax.naming.NamingException" %>
+<jsp:useBean id="aOrderBean" class="com.shoppingcart.ShoppingCartOrderBean" scope="request" />
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/default.css" rel="stylesheet" type="text/css">
+        <link href="style/default.css" rel="stylesheet" type="text/css">
         <title>Toy information</title>
     </head>
     <body>
@@ -23,7 +24,13 @@
         <div class="formContainer">
         <fieldset>
         <%
-            int toyid=Integer.parseInt(request.getParameter("toyid"));
+            int toyid = 0;
+            if (request.getParameter("toyid")==null) {
+                toyid=aOrderBean.getToyID();
+            } else {
+                toyid=Integer.parseInt(request.getParameter("toyid"));
+            }
+            
         try {
 	    
             String name="";
@@ -56,7 +63,10 @@
                     price=rs.getString("price");
                     owner=rs.getString("Owner");
                 }
-
+                 
+                if (con != null) {
+                    con.close();
+                }
             %>
             <legend><%= name %>'s Information</legend>
                 <p>Name: <%= name %></p>
@@ -69,7 +79,8 @@
                 <p>Owner: <%= owner %></p>
                 <br/><a href='<%= request.getContextPath() %>/shoppingcart.jsp?toyid=<%=toyid %>'>Add to cart</a>
             
-            <br/><a href='javascript:history.back(1)'>Back to Toy Directory</a>
+                <a href="<%= request.getContextPath() %>/browse.jsp">Back to Toy Information page</a>
+                <!--<br/><a href='javascript:history.back(1)'>Back to Toy Directory</a> <!--wrong rediect after add to cart-->
             
         <%
         }
