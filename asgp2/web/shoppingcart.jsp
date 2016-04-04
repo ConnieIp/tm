@@ -98,6 +98,7 @@
             <p>Total: <%= totalPrice %>
             <form method='POST' action='<%= request.getContextPath() %>/pay.jsp' >
             <input name='action' type='hidden' value='pay' />
+            <input name='toyid' type='hidden' value='<%= toyid %>' />  <%-- for temp store of toyid --%> 
             <input name='withdrawal' type='hidden' value='<%= totalPrice %>' />
             <input type='submit' value='Submit' />
             </form>

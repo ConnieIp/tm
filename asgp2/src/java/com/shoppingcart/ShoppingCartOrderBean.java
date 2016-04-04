@@ -15,9 +15,9 @@ public class ShoppingCartOrderBean {
     private float totalPrice;
     
     public ShoppingCartOrderBean() {
-        this.userID = 0;
-        this.toyID = 0;
-        this.totalPrice = 0;
+        this.userID = -1;
+        this.toyID = -1;
+        this.totalPrice = -1;
     }
     
     public void setTotalPrice(float totalPrice) {

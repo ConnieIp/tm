@@ -11,7 +11,6 @@
 <%@page import="javax.naming.Context"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="aOrderBean" class="com.shoppingcart.ShoppingCartOrderBean" scope="request" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,8 +22,7 @@
         <h1>Pay</h1>
         <%
             int userID=Integer.parseInt((String) session.getAttribute("userid"));
-            int toyid=aOrderBean.getToyID();
-//            int toyid=Integer.parseInt(request.getParameter("toyid"));    //bug, used beans above to replace this
+            int toyid=Integer.parseInt(request.getParameter("toyid"));
             int transactionPrice=Integer.parseInt(request.getParameter("withdrawal"));
             if (transactionPrice != 0){
                 Context initCtx = new InitialContext();
