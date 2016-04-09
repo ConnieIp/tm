@@ -1,5 +1,5 @@
 <%-- 
-    Document   : addToySuccess
+    Document   : updaateToySuccess
     Created on : 2016年4月9日, 上午01:13:37
     Author     : samsung-pc
 --%>

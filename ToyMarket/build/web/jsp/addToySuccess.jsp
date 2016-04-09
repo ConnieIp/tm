@@ -1,6 +1,6 @@
 <%-- 
-    Document   : updaateToySuccess
-    Created on : 2016年4月9日, 上午01:13:37
+    Document   : addToySuccess
+    Created on : 2016年4月9日, 下午03:05:32
     Author     : samsung-pc
 --%>
 
@@ -12,12 +12,12 @@
         <title>Manage Toy</title>
     </head>
     <body>
-        <h1>Update Toy</h1>
+        <h1>Add Toy</h1>
         <div style='width:600px'>
         <fieldset>
             <jsp:useBean id="Toy" type="allClass.Toy" scope="request" />
         
-            <legend>The toy is sucessfully updated.</legend>
+            <legend>The toy is sucessfully added.</legend>
             <p>ToyID: <jsp:getProperty name="Toy" property="toyid" /></p>
             <p>Name: <jsp:getProperty name="Toy" property="toyname" /></p>   
                         <p><a href='controller?action=browse&amp;category=all' >Back to Toy directory</a></p>
@@ -25,3 +25,4 @@
         </div>
     </body>
 </html>
+

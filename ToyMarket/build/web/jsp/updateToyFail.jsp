@@ -15,7 +15,7 @@
         <fieldset>
 		<jsp:useBean id="Toy" type="allClass.Toy" scope="request" />
         
-            <legend style='color: red'>ERROR: The toy is failed to add.</legend>
+            <legend style='color: red'>ERROR: The toy is failed to update.</legend>
 			<p>ToyID: <jsp:getProperty name="Toy" property="toyid" /></p>
 			<p>Name: <jsp:getProperty name="Toy" property="toyname" /></p>
                         <p><a href='controller?action=browse&amp;category=all' >Back to Toy directory</a></p>

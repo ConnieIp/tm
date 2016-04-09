@@ -51,9 +51,8 @@ public class ManageToy extends HttpServlet {
             HttpSession session=request.getSession();
             String action = request.getParameter("action");
 		String jspPage = "/index.jspx";
-		if ("create".equals(action)){
-			//User user=(User) session.getAttribute("User");
-                        //String userName=user.getUserName();
+		if ("add".equals(action)){
+			User user=(User) session.getAttribute("User");
 			
             String name = request.getParameter("name");
             String type = request.getParameter("type");
@@ -62,10 +61,21 @@ public class ManageToy extends HttpServlet {
             String desc = request.getParameter("desc");
             String qty = request.getParameter("qty");
             String price = request.getParameter("price");
-            String img = request.getParameter("img");
-            String owner = request.getParameter("owner");
+            String img = request.getParameter("img");    
             String recycle = request.getParameter("recycle");
-			
+            String owner;
+            
+            if ((name==null || name.equalsIgnoreCase("")) || (type==null || type.equalsIgnoreCase("")) || 
+                    (age==null || age.equalsIgnoreCase("")) ||
+                    (gender==null || gender.equalsIgnoreCase("")) || (qty==null || qty.equalsIgnoreCase("")) || 
+                    (price==null || price.equalsIgnoreCase("")) ||
+                    (recycle==null || recycle.equalsIgnoreCase("")))
+                jspPage = "/jsp/addToy.jsp";
+            else{
+            if (user.getUserRole().equalsIgnoreCase("admin"))
+                owner="ToyMarket";
+            else
+                owner=user.getUserId();
             Context initCtx = new InitialContext();
             Context envCtx = (Context)initCtx.lookup("java:comp/env");
             DataSource ds = (DataSource)envCtx.lookup("jdbc/ToyMarket");
@@ -89,7 +99,10 @@ public class ManageToy extends HttpServlet {
 				Toy toy=null;
                 if (rows > 0) {
                     Statement stmt = con.createStatement();
-                    ResultSet rs = stmt.executeQuery("SELECT @@IDENTITY AS [@@IDENTITY]");
+                    PreparedStatement pstmt = con.prepareStatement("SELECT * FROM [ToyMarket] WHERE [Name] = ? AND [Type] = ? ");
+                            pstmt.setString(1,name);
+                            pstmt.setString(2,type);
+                            ResultSet rs = pstmt.executeQuery();
                     if (rs != null && rs.next() != false) {
 			int toyid=rs.getInt("ToyID");
 			String recorddate=rs.getString("RecordDate");
@@ -115,9 +128,8 @@ public class ManageToy extends HttpServlet {
 		if (con != null) {
 			con.close();
 		}
-		
-				
-		}
+            }
+            }
 		else if ("update".equals(action)){
 			int toyid=Integer.parseInt(request.getParameter("toyid"));
 			
@@ -138,7 +150,14 @@ public class ManageToy extends HttpServlet {
                         String img = request.getParameter("img");
                         String owner = request.getParameter("owner");
                         String recycle = request.getParameter("recycle");
-			
+			if ((name==null || name.equalsIgnoreCase("")) || (type==null || type.equalsIgnoreCase("")) || 
+                    (age==null || age.equalsIgnoreCase("")) ||
+                    (gender==null || gender.equalsIgnoreCase("")) || (qty==null || qty.equalsIgnoreCase("")) || 
+                    (price==null || price.equalsIgnoreCase("")) ||
+                    (recycle==null || recycle.equalsIgnoreCase(""))){
+                            request.setAttribute("Toy",toy);
+                            jspPage="/jsp/updateToy.jsp";
+                        }else{
                         PreparedStatement pstmt_update = con.prepareStatement("UPDATE [ToyMarket] SET [Name] = ? , [Type] = ? , [Age] = ? ,"
                                 + " [Gender] = ? , [Description] = ? , [Qty] = ? , [Price] = ? , [ImagePath] = ? , [Owner] = ? ,"
                                 + " [RecordDate] = current_timestamp , [Recycle] = ? WHERE [ToyID] = ? ");
@@ -171,8 +190,8 @@ public class ManageToy extends HttpServlet {
                                 if (rs != null) {
                                     rs.close();
                                 }
-				
-			}
+                        }	
+			
 			else{
 				request.setAttribute("Toy", toy);
 				jspPage = "/jsp/updateToyFail.jsp";
@@ -184,10 +203,39 @@ public class ManageToy extends HttpServlet {
 			if (con != null) {
 				con.close();
 			}
+                        }
+                        
 		}
 		else if ("delete".equals(action)){
-		
-		}
+                    int toyid=Integer.parseInt(request.getParameter("toyid"));
+			
+			Context initCtx = new InitialContext();
+                        Context envCtx = (Context)initCtx.lookup("java:comp/env");
+                        DataSource ds = (DataSource)envCtx.lookup("jdbc/ToyMarket");
+                        Connection con = ds.getConnection();
+			
+			Toy toy=ToyMarketLookup.getToy(toyid);
+                        PreparedStatement pstmt_delete = con.prepareStatement("DELETE FROM [ToyMarket] WHERE [ToyID] = ?");
+			pstmt_delete.setInt(1, toyid);
+
+                        int rows = pstmt_delete.executeUpdate();
+
+                        if (rows > 0) {
+                            request.setAttribute("Toy", toy);
+                            jspPage = "/jsp/deleteToySuccess.jsp";
+                        }
+                        else{
+                            request.setAttribute("Toy", toy);
+                            jspPage = "/jsp/deleteToyFail.jsp";
+                        }
+                        if (pstmt_delete != null) {
+				pstmt_delete.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+                            
+                }
 		RequestDispatcher rd = request.getRequestDispatcher(jspPage);
 		rd.forward(request, response);
         } finally {
