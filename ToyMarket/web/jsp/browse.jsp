@@ -57,7 +57,7 @@
 				<%= toy.getToyid() %>				
 				</td>
                                 <td>
-				<a href="controller?action=toyinfo&amp;toyid=<%= toy.getToyid() %>">
+				<a href="controller?action=toyInfo&amp;toyid=<%= toy.getToyid() %>">
 				<%= toy.getToyname() %>
 				</a>
 				</td>

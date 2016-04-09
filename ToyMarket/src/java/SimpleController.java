@@ -57,11 +57,11 @@ public class SimpleController extends HttpServlet {
 			jspPage="/jsp/browse.jsp";
 		}
                 //toyinfo
-		else if ("toyinfo".equals(action)) {
+		else if ("toyInfo".equals(action)) {
 			int toyid=Integer.parseInt(request.getParameter("toyid"));
 			Toy toy=ToyMarketLookup.getToy(toyid);
 			request.setAttribute("Toy", toy);
-			jspPage = "/jsp/toyinfo.jsp";
+			jspPage = "/jsp/toyInfo.jsp";
 		}
                 //update toy
 		else if ("updateToy".equals(action)) {
