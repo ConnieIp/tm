@@ -43,6 +43,8 @@
                         <td>Img:</td><td><jsp:getProperty name="Toy" property="imgPath" /></td>
                     </tr>
                 </table>
+                <br/><a href='shoppingCart?action=add&amp;toyid=<jsp:getProperty name="Toy" property="toyid" />'>Add to Cart</a>
+                <br/><a href='controller?action=browse&amp;category=all'>Back to Toy Directory</a>
             </fieldset>
         </form>
     </body>

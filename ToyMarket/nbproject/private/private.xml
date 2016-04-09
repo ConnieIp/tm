@@ -3,21 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/samsung-pc/Desktop/Kama/University/Year3/SEM%20B/CS4280-netbeans/ToyMarket/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/samsung-pc/Desktop/Kama/University/Year3/SEM%20B/CS4280-netbeans/ToyMarket/src/java/HomeServlet.java</file>
-            <file>file:/C:/Users/samsung-pc/Desktop/Kama/University/Year3/SEM%20B/CS4280-netbeans/ToyMarket/src/java/allClass/Toy.java</file>
-            <file>file:/C:/Users/samsung-pc/Desktop/Kama/University/Year3/SEM%20B/CS4280-netbeans/ToyMarket/src/java/allClass/User.java</file>
-            <file>file:/C:/Users/samsung-pc/Desktop/Kama/University/Year3/SEM%20B/CS4280-netbeans/ToyMarket/src/java/ManageToy.java</file>
-            <file>file:/C:/Users/samsung-pc/Desktop/Kama/University/Year3/SEM%20B/CS4280-netbeans/ToyMarket/web/jsp/updateToySuccess.jsp</file>
-            <file>file:/C:/Users/samsung-pc/Desktop/Kama/University/Year3/SEM%20B/CS4280-netbeans/ToyMarket/web/jsp/updateToyFail.jsp</file>
-            <file>file:/C:/Users/samsung-pc/Desktop/Kama/University/Year3/SEM%20B/CS4280-netbeans/ToyMarket/web/jsp/updateToy.jsp</file>
-            <file>file:/C:/Users/samsung-pc/Desktop/Kama/University/Year3/SEM%20B/CS4280-netbeans/ToyMarket/web/jsp/addToy.jsp</file>
-            <file>file:/C:/Users/samsung-pc/Desktop/Kama/University/Year3/SEM%20B/CS4280-netbeans/ToyMarket/web/index.jspx</file>
-            <file>file:/C:/Users/samsung-pc/Desktop/Kama/University/Year3/SEM%20B/CS4280-netbeans/ToyMarket/src/java/SimpleController.java</file>
-            <file>file:/C:/Users/samsung-pc/Desktop/Kama/University/Year3/SEM%20B/CS4280-netbeans/ToyMarket/src/java/allClass/ToyMarketLookup.java</file>
-            <file>file:/C:/Users/samsung-pc/Desktop/Kama/University/Year3/SEM%20B/CS4280-netbeans/ToyMarket/web/jsp/browse.jsp</file>
-            <file>file:/C:/Users/samsung-pc/Desktop/Kama/University/Year3/SEM%20B/CS4280-netbeans/ToyMarket/web/META-INF/context.xml</file>
-            <file>file:/C:/Users/samsung-pc/Desktop/Kama/University/Year3/SEM%20B/CS4280-netbeans/ToyMarket/web/jsp/deleteToy.jsp</file>
+            <file>file:/C:/PP_file/CS4280/NetBeansProjects/tm/ToyMarket/src/java/ShoppingCartController.java</file>
+            <file>file:/C:/PP_file/CS4280/NetBeansProjects/tm/ToyMarket/src/java/CheckoutController.java</file>
+            <file>file:/C:/PP_file/CS4280/NetBeansProjects/tm/ToyMarket/web/jsp/checkoutSuccess.jsp</file>
+            <file>file:/C:/PP_file/CS4280/NetBeansProjects/tm/ToyMarket/web/jsp/shoppingCart.jsp</file>
+            <file>file:/C:/PP_file/CS4280/NetBeansProjects/tm/ToyMarket/src/java/allClass/Transaction.java</file>
         </group>
     </open-files>
 </project-private>

@@ -66,6 +66,14 @@
         <servlet-name>ManageToy</servlet-name>
         <servlet-class>ManageToy</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShoppingCartController</servlet-name>
+        <servlet-class>ShoppingCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutController</servlet-name>
+        <servlet-class>CheckoutController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SimpleController</servlet-name>
         <url-pattern>/controller</url-pattern>
@@ -93,6 +101,14 @@
     <servlet-mapping>
         <servlet-name>ManageToy</servlet-name>
         <url-pattern>/manageToy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShoppingCartController</servlet-name>
+        <url-pattern>/shoppingCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutController</servlet-name>
+        <url-pattern>/checkout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
