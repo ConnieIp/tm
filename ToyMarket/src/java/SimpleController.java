@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -60,7 +61,10 @@ public class SimpleController extends HttpServlet {
 		else if ("toyInfo".equals(action)) {
 			int toyid=Integer.parseInt(request.getParameter("toyid"));
 			Toy toy=ToyMarketLookup.getToy(toyid);
+                        ArrayList<Comment> comments = CommentLookup.getComments(toyid);
+                        HttpSession session = request.getSession();
 			request.setAttribute("Toy", toy);
+                        request.setAttribute("comments", comments);
 			jspPage = "/jsp/toyInfo.jsp";
 		}
                 //update toy

@@ -5,7 +5,7 @@
 --%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="allClass.*"%>
+<%@page import="allClass.Toy,allClass.ShoppingCart"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
                 <legend>Details of Transaction</legend>
                 <table>
                     <tr>
-                        <td>Transaction ID</td><td>${aTransaction.transactID}</td><td></td>
+                        <td>Transaction ID</td><td>${requestScope.aTransaction.transactID}</td><td></td>
                     </tr>
                     <tr>
                         <td colspan="3">Cart</td>
@@ -49,5 +49,6 @@
                 </table>
             </fieldset>
         </form>
+        <br/><a href='controller?action=browse&amp;category=all'>Back to Toy Directory</a>
     </body>
 </html>

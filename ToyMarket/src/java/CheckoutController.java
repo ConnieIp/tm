@@ -98,6 +98,9 @@ public class CheckoutController extends HttpServlet {
                     userID = rs.getString("UserID");
                     recordDate = rs.getString("Date");
                 }
+                if (rs != null) {
+                    rs.close();
+                }
                 Transaction aTransaction = new Transaction();
                 aTransaction.setTransactID(transactID);
                 aTransaction.setCart(cart); //this cart is not working, may be fixed later

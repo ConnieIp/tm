@@ -39,7 +39,8 @@
                 </table>
             </fieldset>
         </form>
-        <br/><a href='shoppingCart?action=checkout'>Checkout!</a>
+        <br/><a href='shoppingCart?action=clear'>Clear Cart</a>
+        <br/><a href='checkout'>Checkout!</a>
         <br/><a href='controller?action=browse&amp;category=all'>Back to Toy Directory</a>
     </body>
 </html>

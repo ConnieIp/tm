@@ -68,12 +68,15 @@ public class ShoppingCartController extends HttpServlet {
                 session.setAttribute("cart", cart);
                 
                 dispatchPath = "/jsp/shoppingCart.jsp";
-                rd = request.getRequestDispatcher(dispatchPath);
-            } else if ("checkout".equals(action)) {
-                ServletContext context= getServletContext();
-                dispatchPath = "/checkout";
-                rd = context.getRequestDispatcher(dispatchPath);
+            } else if ("clear".equals(action)) {
+                if (session.getAttribute("cart") != null) {
+                    session.removeAttribute("cart");
+                    dispatchPath = "/jsp/clearCartFail.jsp";
+                } else {
+                    dispatchPath = "/jsp/clearCartSuccess.jsp";
+                }
             }
+            rd = request.getRequestDispatcher(dispatchPath);
             rd.forward(request, response);
         } catch (NamingException ex) {
             Logger.getLogger(SimpleController.class.getName()).log(Level.SEVERE, null, ex);

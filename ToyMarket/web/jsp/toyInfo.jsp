@@ -47,5 +47,8 @@
                 <br/><a href='controller?action=browse&amp;category=all'>Back to Toy Directory</a>
             </fieldset>
         </form>
+        <div>
+            <jsp:include page="include/comment.jsp" />
+        </div>
     </body>
 </html>
