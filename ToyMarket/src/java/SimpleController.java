@@ -62,7 +62,6 @@ public class SimpleController extends HttpServlet {
 			int toyid=Integer.parseInt(request.getParameter("toyid"));
 			Toy toy=ToyMarketLookup.getToy(toyid);
                         ArrayList<Comment> comments = CommentLookup.getComments(toyid);
-                        HttpSession session = request.getSession();
 			request.setAttribute("Toy", toy);
                         request.setAttribute("comments", comments);
 			jspPage = "/jsp/toyInfo.jsp";

@@ -37,9 +37,9 @@ public class CommentLookup {
                 String userID = rs.getString("userID");
                 String commentID = rs.getString("CommentID");
                 String comment = rs.getString("Comment");
-                Date date = rs.getDate("Date");
+                Date date = rs.getDate("CommentDate");
                 //create a comment
-                Comment aComment = new Comment ();
+                Comment aComment = new Comment();
                 aComment.setToyid(toyid);
                 aComment.setUserID(userID);
                 aComment.setCommentID(commentID);
@@ -78,7 +78,7 @@ public class CommentLookup {
                 int toyid = Integer.parseInt(rs.getString("ToyID"));
                 String userID = rs.getString("UserID");
                 String comment = rs.getString("Comment");
-                Date date = rs.getDate("Date");
+                Date date = rs.getDate("CommentDate");
                 //set comment's attributes
                 aComment.setToyid(toyid);
                 aComment.setUserID(userID);
