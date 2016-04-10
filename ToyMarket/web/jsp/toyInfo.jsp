@@ -3,6 +3,7 @@
     Created on : 2016年4月9日, 下午03:11:01
     Author     : PuiWa
 --%>
+<%@page import="allClass.User"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -49,6 +50,12 @@
         </form>
         <div>
             <jsp:include page="include/comment.jsp" />
+            <form method='POST' action='comment' >
+			<input name='action' type='hidden' value='addcomment' />
+                        <input name='toyid' type='hidden' value='<jsp:getProperty name="Toy" property="toyid" />' />
+			<p><input name='newComment' type='text' size='100' maxlength='255' value='Add comment here...' /></p>
+			<input type='submit' value='Submit' />
+            </form>
         </div>
     </body>
 </html>
