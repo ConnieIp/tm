@@ -75,25 +75,24 @@ public class CheckoutController extends HttpServlet {
                         toysID = toysID + ",";
                     }
 
-                    //deduct qty
+                    //deduct qty in [ToyMarket]
                     int totalQty = ToyMarketLookup.getToy(aToy.getToyid()).getQty();
-                    pstmt_update.setInt(1, totalQty-1);
+                    pstmt_update.setInt(1, totalQty-(Integer) pair.getValue());
                     pstmt_update.setInt(2, aToy.getToyid());
                     pstmt_update.executeUpdate();
 
                     i++;
-                    toyIt.remove(); //avoids a ConcurrentModificationException
                 }
                 pstmt_insert.setString(2, toysID);
                 pstmt_insert.setDouble(3, cart.getTotal());
-                pstmt_insert.executeUpdate();
+                pstmt_insert.executeUpdate(); //insert new record to [UserTransactRecord]
 
                 //get info required for beans printing result
                 PreparedStatement pstmt_select = con.prepareStatement("SELECT * FROM [UserTransactRecord] WHERE [USERID] = ?");
                 pstmt_select.setString(1, user.getUserId());
                 ResultSet rs = pstmt_select.executeQuery();
                 String transactID = null, userID = null, recordDate = null;
-                if (rs != null && rs.next() != false) {
+                while (rs != null && rs.next() != false) {
                     transactID = rs.getString("TransactID");
                     userID = rs.getString("UserID");
                     recordDate = rs.getString("Date");
@@ -103,7 +102,7 @@ public class CheckoutController extends HttpServlet {
                 }
                 Transaction aTransaction = new Transaction();
                 aTransaction.setTransactID(transactID);
-                aTransaction.setCart(cart); //this cart is not working, may be fixed later
+                aTransaction.setCart(cart);
                 aTransaction.setDate(recordDate);
                 
                 request.setAttribute("aTransaction", aTransaction);

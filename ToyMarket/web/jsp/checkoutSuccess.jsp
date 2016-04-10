@@ -16,19 +16,12 @@
     </head>
     <body>
         <h1>Checkout Success</h1>
-        <jsp:useBean id="aTransaction" type="allClass.Transaction" scope="request" />
-        <%
-            if (aTransaction.getCart().getToys().size()==0)
-                out.print("aTransaction cart is null");
-            else
-                out.print("aTransaction cart is not null");
-        %>
         <form>
             <fieldset>
                 <legend>Details of Transaction</legend>
                 <table>
                     <tr>
-                        <td>Transaction ID</td><td>${requestScope.aTransaction.transactID}</td><td></td>
+                        <td>Transaction ID</td><td>${aTransaction.transactID}</td><td></td>
                     </tr>
                     <tr>
                         <td colspan="3">Cart</td>

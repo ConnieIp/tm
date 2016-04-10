@@ -5,7 +5,6 @@
  */
 package allClass;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -22,7 +21,7 @@ public class ShoppingCart {
         this.numOfItems = 0;
         this.toys = new HashMap<Toy,Integer>();
     }
-    
+
     public double getTotal() {
         return total;
     }
@@ -31,7 +30,7 @@ public class ShoppingCart {
         this.total = total;
     }
 
-    public int getNumberOfItems() {
+    public int getNumOfItems() {
         return numOfItems;
     }
 
@@ -46,4 +45,5 @@ public class ShoppingCart {
     public void setToys(HashMap<Toy,Integer> toys) {
         this.toys = toys;
     }
+    
 }

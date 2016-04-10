@@ -64,7 +64,7 @@ public class ShoppingCartController extends HttpServlet {
                 //add price to total
                 cart.setTotal(cart.getTotal()+newToy.getPrice());
                 //add num of Items to numOfItems
-                cart.setNumOfItems(cart.getNumberOfItems()+1); //may change num to be flexible later
+                cart.setNumOfItems(cart.getNumOfItems()+1); //may change num to be flexible later
                 session.setAttribute("cart", cart);
                 
                 dispatchPath = "/jsp/shoppingCart.jsp";
