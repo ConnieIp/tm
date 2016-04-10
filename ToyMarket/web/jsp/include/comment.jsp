@@ -16,14 +16,6 @@
     </head>
     <body>
         <h1>Comment</h1>
-        <%--<jsp:useBean id="comments" type="java.util.ArrayList" scope="request" />--%>
-        <%
-            ArrayList<Comment> tempComments = (ArrayList<Comment>)request.getAttribute("comments");
-            if (tempComments.size()==0) 
-                out.println("null comments");
-            else
-                out.println("not null comments");
-        %>
         <table>
             <tr>
                 <td>Comment ID</td>

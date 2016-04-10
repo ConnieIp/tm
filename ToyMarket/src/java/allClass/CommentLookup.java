@@ -33,7 +33,7 @@ public class CommentLookup {
             PreparedStatement pstmt_select = con.prepareStatement("SELECT * FROM [TOYCOMMENT] WHERE [TOYID] = ?");
             pstmt_select.setInt(1, toyid);
             ResultSet rs = pstmt_select.executeQuery();
-            if (rs != null && rs.next() != false) {
+            while (rs != null && rs.next() != false) {
                 String userID = rs.getString("userID");
                 String commentID = rs.getString("CommentID");
                 String comment = rs.getString("Comment");
