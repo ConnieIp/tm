@@ -21,9 +21,9 @@
             <legend style='color: red'>ERROR:The Reply is fail to add.</legend>
             <p>ToyID: <jsp:getProperty name="Reply" property="toyid" /></p>
             <p>CommentID: <jsp:getProperty name="Reply" property="commentID" /></p>
-            <p>CommentID: <jsp:getProperty name="Reply" property="replyID" /></p>
+            <p>Reply ID: <jsp:getProperty name="Reply" property="replyID" /></p>
             <p>Comment: <jsp:getProperty name="Reply" property="reply" /></p>   
-                        <p><a href='controller?sction=toyinfo&amp;toyid=<jsp:getProperty name="Reply" property="toyid" />' >Back to Toy Info Page</a></p>
+                        <p><a href='controller?action=toyinfo&amp;toyid=<jsp:getProperty name="Reply" property="toyid" />' >Back to Toy Info Page</a></p>
         </fieldset>
         </div>
     </body>

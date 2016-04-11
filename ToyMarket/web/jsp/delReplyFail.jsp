@@ -1,9 +1,8 @@
 <%-- 
-    Document   : addReplySuccess
-    Created on : 2016年4月11日, 上午12:07:47
+    Document   : delReplyFail
+    Created on : 2016年4月12日, 上午12:19:23
     Author     : samsung-pc
 --%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,12 +12,12 @@
         <title>Comment</title>
     </head>
     <body>
-        <h1>Add Reply</h1>
+        <h1>Delete Reply</h1>
         <div style='width:600px'>
         <fieldset>
             <jsp:useBean id="Reply" type="allClass.Reply" scope="request" />
         
-            <legend>The Reply is sucessfully added.</legend>
+            <legend style='color: red'>ERROR:The Reply is fail to delete.</legend>
             <p>ToyID: <jsp:getProperty name="Reply" property="toyid" /></p>
             <p>CommentID: <jsp:getProperty name="Reply" property="commentID" /></p>
             <p>Reply ID: <jsp:getProperty name="Reply" property="replyID" /></p>
@@ -28,9 +27,4 @@
         </div>
     </body>
 </html>
-
-
-
-
-
 

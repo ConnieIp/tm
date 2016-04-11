@@ -33,6 +33,12 @@
                     <td>${entry.userID}</td>
                     <td>${entry.date}</td>
                     <td>${entry.comment}</td>
+                    <td><form method='POST' action='comment' >
+                    <input name='action' type='hidden' value='delComment' />
+                    <input name='toyid' type='hidden' value='${entry.toyid}' />
+                    <input name='CommentID' type='hidden' value='${entry.commentID}' />
+                    <input type='submit' value='Delete' />
+                        </form></td>
                     </tr>
                     
                     <c:forEach var="entry2" items="${replies}" varStatus="iter">
@@ -43,6 +49,13 @@
                     <td>${entry2.mgrID}</td>
                     <td> / </td>
                     <td>${entry2.reply}</td>
+                    <td><form method='POST' action='comment' >
+                    <input name='action' type='hidden' value='delReply' />
+                    <input name='toyid' type='hidden' value='${entry.toyid}' />
+                    <input name='CommentID' type='hidden' value='${entry.commentID}' />
+                    <input name='ReplyID' type='hidden' value='${entry2.replyID}' />
+                    <input type='submit' value='Delete' />
+                        </form></td>
                     </tr>
                         </c:if>
                     </c:forEach>
