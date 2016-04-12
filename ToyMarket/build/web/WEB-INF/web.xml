@@ -74,6 +74,10 @@
         <servlet-name>CheckoutController</servlet-name>
         <servlet-class>CheckoutController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ToyRecycleServlet</servlet-name>
+        <servlet-class>ToyRecycleServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SimpleController</servlet-name>
         <url-pattern>/controller</url-pattern>
@@ -109,6 +113,10 @@
     <servlet-mapping>
         <servlet-name>CheckoutController</servlet-name>
         <url-pattern>/checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ToyRecycleServlet</servlet-name>
+        <url-pattern>/recycle</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

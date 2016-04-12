@@ -83,6 +83,9 @@ public class SimpleController extends HttpServlet {
                 //add toy
 		else if ("addToy".equals(action)) {
 			jspPage = "/jsp/addToy.jsp";
+		} //recycle toy
+		else if ("recycleToy".equals(action)) {
+			jspPage = "/jsp/recycleToy.jsp";
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(jspPage);
