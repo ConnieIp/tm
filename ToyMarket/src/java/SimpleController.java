@@ -62,8 +62,10 @@ public class SimpleController extends HttpServlet {
 			int toyid=Integer.parseInt(request.getParameter("toyid"));
 			Toy toy=ToyMarketLookup.getToy(toyid);
                         ArrayList<Comment> comments = CommentLookup.getComments(toyid);
+                        ArrayList<Reply> replies = CommentLookup.getAllReplies(toyid);
 			request.setAttribute("Toy", toy);
                         request.setAttribute("comments", comments);
+                        request.setAttribute("replies", replies);
 			jspPage = "/jsp/toyInfo.jsp";
 		}
                 //update toy

@@ -57,9 +57,12 @@ public class CheckoutController extends HttpServlet {
                 Connection con = ds.getConnection();
                 User user = (User)session.getAttribute("User");
                 PreparedStatement pstmt_update = con.prepareStatement("UPDATE [ToyMarket] SET [Qty] = ? WHERE [ToyID] = ? ");
-                PreparedStatement pstmt_insert = con.prepareStatement("INSERT INTO [UserTransactRecord]([USERID], [CART], [TOTAL]) " + 
+                PreparedStatement pstmt_insertTransact = con.prepareStatement("INSERT INTO [UserTransactRecord]([USERID], [CART], [TOTAL]) " + 
                                                                     "VALUES (?, ?, ?)");
-                pstmt_insert.setString(1, user.getUserId());
+                PreparedStatement pstmt_insertRecycle = con.prepareStatement("INSERT INTO [UserRecycleBalance]([USERID], [Balance]) " + 
+                                                                    "VALUES (?, ?)");
+                pstmt_insertRecycle.setString(1, user.getUserId());
+                pstmt_insertTransact.setString(1, user.getUserId());
                 ShoppingCart cart = (ShoppingCart)session.getAttribute("cart");
                 String toysID = "";
                 HashMap<Toy,Integer> toys = cart.getToys();
@@ -81,11 +84,18 @@ public class CheckoutController extends HttpServlet {
                     pstmt_update.setInt(2, aToy.getToyid());
                     pstmt_update.executeUpdate();
 
+                    //update owner's balance if the toy is recycled
+                    if (aToy.getRecycle().equals("Y")) {
+                        float toyRecyclePrice = aToy.getPrice();
+                        pstmt_insertRecycle.setString(2, ""+toyRecyclePrice);
+                        pstmt_insertRecycle.executeUpdate();
+                    }
+                    
                     i++;
                 }
-                pstmt_insert.setString(2, toysID);
-                pstmt_insert.setDouble(3, cart.getTotal());
-                pstmt_insert.executeUpdate(); //insert new record to [UserTransactRecord]
+                pstmt_insertTransact.setString(2, toysID);
+                pstmt_insertTransact.setDouble(3, cart.getTotal());
+                pstmt_insertTransact.executeUpdate(); //insert new record to [UserTransactRecord]
 
                 //get info required for beans printing result
                 PreparedStatement pstmt_select = con.prepareStatement("SELECT * FROM [UserTransactRecord] WHERE [USERID] = ?");
@@ -109,11 +119,14 @@ public class CheckoutController extends HttpServlet {
 
                 session.removeAttribute("cart"); //remove cart  after checkout
 
-                if (pstmt_insert != null) {
-                    pstmt_insert.close();
+                if (pstmt_insertTransact != null) {
+                    pstmt_insertTransact.close();
                 }
                 if (pstmt_select != null) {
                     pstmt_select.close();
+                }
+                if (pstmt_insertRecycle != null) {
+                    pstmt_insertTransact.close();
                 }
                 if (con != null) {
                     con.close();

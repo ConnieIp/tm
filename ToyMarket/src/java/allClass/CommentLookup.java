@@ -64,7 +64,7 @@ public class CommentLookup {
         return comments;
     }
     
-    public static Comment getAComment(String commentid) {
+    public static Comment getAComment(int toyid,String commentid) {
         Comment aComment = new Comment();
         try {
             Context initCtx = new InitialContext();
@@ -75,7 +75,6 @@ public class CommentLookup {
             pstmt_select.setString(1, commentid);
             ResultSet rs = pstmt_select.executeQuery();
             if (rs != null && rs.next() != false) {
-                int toyid = Integer.parseInt(rs.getString("ToyID"));
                 String userID = rs.getString("UserID");
                 String comment = rs.getString("Comment");
                 Date date = rs.getDate("CommentDate");
@@ -93,4 +92,172 @@ public class CommentLookup {
         }
         return aComment;
     }
+    
+    public static ArrayList<Reply> getReplies(int toyid,String commentid) {
+            ArrayList<Reply> replies = new ArrayList<Reply>();
+        try{
+            Context initCtx = new InitialContext();
+            Context envCtx = (Context)initCtx.lookup("java:comp/env");
+            DataSource ds = (DataSource)envCtx.lookup("jdbc/ToyMarket");
+            Connection con = ds.getConnection();
+            PreparedStatement pstmt3 = con.prepareStatement("SELECT * FROM [ToyReply] WHERE [ToyID] = ? AND [CommentID] = ?");
+            pstmt3.setInt(1, toyid);
+            pstmt3.setString(2, commentid);
+            ResultSet rs3 = pstmt3.executeQuery();
+             while (rs3 != null && rs3.next() != false) {
+                String replyid = rs3.getString("ReplyID");
+                String mgrid = rs3.getString("MgrID");
+                String reply = rs3.getString("Reply");
+                
+                PreparedStatement pstmt4 = con.prepareStatement("SELECT * FROM [UserIDMap] WHERE [UserID] = ?");
+                pstmt4.setString(1, mgrid);
+                ResultSet rs4 = pstmt4.executeQuery();
+                String mgrname="";
+                if (rs4 != null && rs4.next() != false){
+                   mgrname = rs4.getString("Username");
+                }
+                Reply aReply=new Reply();
+                aReply.setToyid(toyid);
+                aReply.setCommentID(commentid);
+                aReply.setReplyID(replyid);
+                aReply.setMgrID(mgrid);
+                aReply.setMgrname(mgrname);
+                aReply.setReply(reply);
+                replies.add(aReply);
+                if (pstmt4 != null) {
+                pstmt4.close();
+                }
+                if (rs4 != null) {
+                rs4.close();
+                }
+            }
+             if (rs3 != null) {
+                rs3.close();
+            }
+             if (pstmt3 != null) {
+                pstmt3.close();
+            }
+            
+            if (con != null) {
+                con.close();
+            }
+            } catch (NamingException ex) {
+                Logger.getLogger(CommentLookup.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(CommentLookup.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return replies;
+    }
+    public static ArrayList<Reply> getAllReplies(int toyid) {
+            ArrayList<Reply> replies = new ArrayList<Reply>();
+        try{
+            Context initCtx = new InitialContext();
+            Context envCtx = (Context)initCtx.lookup("java:comp/env");
+            DataSource ds = (DataSource)envCtx.lookup("jdbc/ToyMarket");
+            Connection con = ds.getConnection();
+            PreparedStatement pstmt3 = con.prepareStatement("SELECT * FROM [ToyReply] WHERE [ToyID] = ?");
+            pstmt3.setInt(1, toyid);
+            ResultSet rs3 = pstmt3.executeQuery();
+             while (rs3 != null && rs3.next() != false) {
+                String replyid = rs3.getString("ReplyID");
+                String mgrid = rs3.getString("MgrID");
+                String reply = rs3.getString("Reply");
+                String commentid = rs3.getString("CommentID");
+                
+                PreparedStatement pstmt4 = con.prepareStatement("SELECT * FROM [UserIDMap] WHERE [UserID] = ?");
+                pstmt4.setString(1, mgrid);
+                ResultSet rs4 = pstmt4.executeQuery();
+                String mgrname="";
+                if (rs4 != null && rs4.next() != false){
+                   mgrname = rs4.getString("Username");
+                }
+                Reply aReply=new Reply();
+                aReply.setToyid(toyid);
+                aReply.setCommentID(commentid);
+                aReply.setReplyID(replyid);
+                aReply.setMgrID(mgrid);
+                aReply.setMgrname(mgrname);
+                aReply.setReply(reply);
+                replies.add(aReply);
+                if (pstmt4 != null) {
+                pstmt4.close();
+                }
+                if (rs4 != null) {
+                rs4.close();
+                }
+            }
+             if (rs3 != null) {
+                rs3.close();
+            }
+             if (pstmt3 != null) {
+                pstmt3.close();
+            }
+            
+            if (con != null) {
+                con.close();
+            }
+            } catch (NamingException ex) {
+                Logger.getLogger(CommentLookup.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(CommentLookup.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return replies;
+    }
+    
+    public static Reply getAReply(int toyid,String commentid,String replyid){
+        Reply aReply=new Reply();;
+        try {
+            Context initCtx = new InitialContext();
+            Context envCtx = (Context)initCtx.lookup("java:comp/env");
+            DataSource ds = (DataSource)envCtx.lookup("jdbc/ToyMarket");
+            Connection con = ds.getConnection();
+            PreparedStatement pstmt_select = con.prepareStatement("SELECT * FROM [ToyReply] WHERE [ToyID]= ? AND [CommentID] = ? AND [ReplyID] = ? ");
+            pstmt_select.setInt(1, toyid);
+            pstmt_select.setString(1, commentid);
+            pstmt_select.setString(3, replyid);
+            ResultSet rs = pstmt_select.executeQuery();
+            if (rs != null && rs.next() != false) {
+                String mgrid = rs.getString("MgrID");
+                String reply = rs.getString("Reply");
+                
+                PreparedStatement pstmt4 = con.prepareStatement("SELECT * FROM [UserIDMap] WHERE [UserID] = ?");
+                pstmt4.setString(1, mgrid);
+                ResultSet rs4 = pstmt4.executeQuery();
+                String mgrname="";
+                if (rs4 != null && rs4.next() != false){
+                   mgrname = rs4.getString("Username");
+                }
+                
+                //set reply's attributes
+                aReply.setToyid(toyid);
+                aReply.setCommentID(commentid);
+                aReply.setReplyID(replyid);
+                aReply.setMgrID(mgrid);
+                aReply.setMgrname(mgrname);
+                aReply.setReply(reply);
+                if (pstmt4 != null) {
+                pstmt4.close();
+                }
+                if (rs4 != null) {
+                rs4.close();
+                }
+            }
+             if (rs != null) {
+                rs.close();
+            }
+             if (pstmt_select != null) {
+                pstmt_select.close();
+            }
+            
+            if (con != null) {
+                con.close();
+            }
+        } catch (NamingException ex) {
+            Logger.getLogger(CommentLookup.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CommentLookup.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return aReply;
+    }
+    
 }

@@ -5,6 +5,7 @@
 --%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="allClass.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
@@ -79,7 +80,15 @@
 			</tr>
         </tbody>
         </table></div>
-        <br/><a href='controller?action=addToy'>Add a New Toy</a>
+        <br/>
+        <c:choose>
+            <c:when test='${User.userRole == "admin"}'>
+                <a href='controller?action=addToy'>Add a New Toy</a>
+            </c:when>
+            <c:otherwise>
+                <a href='controller?action=recycleToy'>Recycle your Toy!</a>
+            </c:otherwise>
+        </c:choose>
         <br/>
         <p><a href='logout.do'>Logout</a></p>
         </fieldset>

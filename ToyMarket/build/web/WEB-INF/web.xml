@@ -78,6 +78,14 @@
         <servlet-name>ToyRecycleServlet</servlet-name>
         <servlet-class>ToyRecycleServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CommentController</servlet-name>
+        <servlet-class>CommentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManageRecycleServlet</servlet-name>
+        <servlet-class>ManageRecycleServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SimpleController</servlet-name>
         <url-pattern>/controller</url-pattern>
@@ -117,6 +125,10 @@
     <servlet-mapping>
         <servlet-name>ToyRecycleServlet</servlet-name>
         <url-pattern>/recycle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageRecycleServlet</servlet-name>
+        <url-pattern>/manageRecycle</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
