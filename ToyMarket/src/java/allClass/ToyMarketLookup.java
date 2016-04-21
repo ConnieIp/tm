@@ -72,7 +72,8 @@ public class ToyMarketLookup {
             rs = stmt.executeQuery("SELECT * FROM [ToyMarket] WHERE [Age] BETWEEN 0 AND 3 OR [AGE] = 0 ORDER BY [ToyID] ASC");
         }
         else{
-            rs = stmt.executeQuery("SELECT * FROM [ToyMarket] ORDER BY [ToyID] ASC");
+            //[RECYCLE]=NULL means not yet processed by manager, [RECYCLE]=Y means recycle, [RECYCLE]=N means not recycle , [RECYCLE]=R means "Rejected" 
+            rs = stmt.executeQuery("SELECT * FROM [ToyMarket] WHERE [RECYCLE] IS NOT NULL AND [RECYCLE] <> 'R' ORDER BY [ToyID] ASC");
         }
         ArrayList<Toy> toys = new ArrayList<Toy>();
         while (rs != null && rs.next() != false) {

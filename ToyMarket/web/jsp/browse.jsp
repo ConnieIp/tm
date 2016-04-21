@@ -84,6 +84,7 @@
         <c:choose>
             <c:when test='${User.userRole == "admin"}'>
                 <a href='controller?action=addToy'>Add a New Toy</a>
+                <br/><a href='manageRecycle?action=browse'>Manage Toy Recycle Applications</a>
             </c:when>
             <c:otherwise>
                 <a href='controller?action=recycleToy'>Recycle your Toy!</a>

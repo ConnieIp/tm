@@ -75,8 +75,8 @@
         <servlet-class>CheckoutController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ToyRecycleServlet</servlet-name>
-        <servlet-class>ToyRecycleServlet</servlet-class>
+        <servlet-name>ApplyRecycleServlet</servlet-name>
+        <servlet-class>ApplyRecycleServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CommentController</servlet-name>
@@ -123,12 +123,16 @@
         <url-pattern>/checkout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ToyRecycleServlet</servlet-name>
+        <servlet-name>ManageRecycleServlet</servlet-name>
+        <url-pattern>/manageRecycle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApplyRecycleServlet</servlet-name>
         <url-pattern>/recycle</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ManageRecycleServlet</servlet-name>
-        <url-pattern>/manageRecycle</url-pattern>
+        <servlet-name>CommentController</servlet-name>
+        <url-pattern>/comment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
