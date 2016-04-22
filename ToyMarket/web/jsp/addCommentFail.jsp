@@ -27,7 +27,7 @@
             <p>ToyID: <jsp:getProperty name="Comment" property="toyid" /></p>
             <p>CommentID: <jsp:getProperty name="Comment" property="commentID" /></p>   
             <p>Comment: <jsp:getProperty name="Comment" property="comment" /></p>   
-                        <p><a href='controller?action=toyinfo&amp;toyid=<jsp:getProperty name="Comment" property="toyid" />' >Back to Toy Info Page</a></p>
+                        <p><a href='controller?action=toyInfo&amp;toyid=<jsp:getProperty name="Comment" property="toyid" />' >Back to Toy Info Page</a></p>
         </fieldset>
         </div>
     </body>

@@ -6,6 +6,7 @@
             <web-resource-name>Common</web-resource-name>
             <url-pattern>/index.do</url-pattern>
             <url-pattern>/browse.jsp</url-pattern>
+            <url-pattern>/addToy.jsp</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>user</role-name>
@@ -20,7 +21,6 @@
             <url-pattern>/deleteToy.jsp</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>user</role-name>
             <role-name>admin</role-name>
         </auth-constraint>
     </security-constraint>

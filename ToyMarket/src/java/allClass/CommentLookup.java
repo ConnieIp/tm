@@ -85,6 +85,15 @@ public class CommentLookup {
                 aComment.setComment(comment);
                 aComment.setDate(date);
             }
+            if (pstmt_select != null) {
+                pstmt_select.close();
+                }
+                if (rs != null) {
+                rs.close();
+                }
+            if (con != null) {
+                con.close();
+            }
         } catch (NamingException ex) {
             Logger.getLogger(CommentLookup.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -213,7 +222,7 @@ public class CommentLookup {
             Connection con = ds.getConnection();
             PreparedStatement pstmt_select = con.prepareStatement("SELECT * FROM [ToyReply] WHERE [ToyID]= ? AND [CommentID] = ? AND [ReplyID] = ? ");
             pstmt_select.setInt(1, toyid);
-            pstmt_select.setString(1, commentid);
+            pstmt_select.setString(2, commentid);
             pstmt_select.setString(3, replyid);
             ResultSet rs = pstmt_select.executeQuery();
             if (rs != null && rs.next() != false) {

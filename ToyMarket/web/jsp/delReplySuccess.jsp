@@ -22,7 +22,7 @@
             <p>CommentID: <jsp:getProperty name="Reply" property="commentID" /></p>
             <p>Reply ID: <jsp:getProperty name="Reply" property="replyID" /></p>
             <p>Comment: <jsp:getProperty name="Reply" property="reply" /></p>   
-                        <p><a href='controller?action=toyinfo&amp;toyid=<jsp:getProperty name="Reply" property="toyid" />' >Back to Toy Info Page</a></p>
+                        <p><a href='controller?action=toyInfo&amp;toyid=<jsp:getProperty name="Reply" property="toyid" />' >Back to Toy Info Page</a></p>
         </fieldset>
         </div>
     </body>

@@ -90,7 +90,14 @@ public class CommentController extends HttpServlet {
                                             request.setAttribute("Comment", CommentLookup.getAComment(toyid, String.valueOf(commentCount+1)));
                                             jspPage="/jsp/addCommentFail.jsp";
                                         }
+                                    if (pstmt_add !=null){
+                                        pstmt_add.close();
                                     }
+                                    if (con != null) {
+                                        con.close();
+                                    }
+                                }
+                                
                         }
             }
             else if ("addReply".equalsIgnoreCase(action)){
@@ -129,9 +136,85 @@ public class CommentController extends HttpServlet {
                                             request.setAttribute("Reply", CommentLookup.getAReply(toyid, reCommentID, String.valueOf(replyCount+1)));
                                             jspPage="/jsp/addReplyFail.jsp";
                                         }
+                                        if (pstmt_add !=null){
+                                        pstmt_add.close();
+                                        }
+                                        if (con != null) {
+                                            con.close();
+                                        }
                                 }
                         }
-                }
+            }else if ("delComment".equalsIgnoreCase(action)){
+                Context initCtx = new InitialContext();
+                Context envCtx = (Context)initCtx.lookup("java:comp/env");
+                DataSource ds = (DataSource)envCtx.lookup("jdbc/ToyMarket");
+                Connection con = ds.getConnection();
+		
+			String commentID=request.getParameter("CommentID");
+                        
+                        Comment comment=CommentLookup.getAComment(toyid, commentID);
+                        PreparedStatement pstmt_delreply;
+                        pstmt_delreply = con.prepareStatement("DELETE FROM [ToyReply] WHERE [ToyID] =? AND [CommentID] = ?");
+                        pstmt_delreply.setInt(1,toyid);
+                        pstmt_delreply.setString(2,commentID);
+                        int rows_delreply = pstmt_delreply.executeUpdate();
+                        
+                        PreparedStatement pstmt;
+                        pstmt = con.prepareStatement("DELETE FROM [ToyComment] WHERE [ToyID] = ? AND [CommentID] = ?");
+                        pstmt.setInt(1,toyid);
+                        pstmt.setString(2,commentID);
+                        int rows = pstmt.executeUpdate();
+
+                        if (rows > 0) {
+                            
+                            request.setAttribute("Comment",comment);
+                            jspPage="/jsp/delCommentSuccess.jsp";
+                        }
+                        else{
+                            request.setAttribute("Comment",comment);                      
+                            jspPage="/jsp/delCommentFail.jsp";
+                        }
+                        if (pstmt_delreply !=null){
+                           pstmt_delreply.close();
+                        }
+                        if (pstmt !=null){
+                           pstmt.close();
+                        }
+                        if (con != null) {
+                            con.close();
+                        }
+            }else if ("delReply".equalsIgnoreCase(action)){
+                Context initCtx = new InitialContext();
+                Context envCtx = (Context)initCtx.lookup("java:comp/env");
+                DataSource ds = (DataSource)envCtx.lookup("jdbc/ToyMarket");
+                Connection con = ds.getConnection();
+		
+			String commentID=request.getParameter("CommentID");
+			String replyID=request.getParameter("ReplyID");
+                        
+                        Reply reply=CommentLookup.getAReply(toyid, commentID, replyID);
+                        PreparedStatement pstmt;
+                        pstmt = con.prepareStatement("DELETE FROM [ToyReply] WHERE [ToyID] =? AND [CommentID] = ? AND [ReplyID] = ?");
+                        pstmt.setInt(1,toyid);
+                        pstmt.setString(2,commentID);
+                        pstmt.setString(3,replyID);
+                        int rows = pstmt.executeUpdate();
+
+                        if (rows > 0) {
+                            request.setAttribute("Reply",reply);
+                            jspPage="/jsp/delReplySuccess.jsp";
+                        }
+                        else{
+                            request.setAttribute("Reply",reply);
+                            jspPage="/jsp/delReplyFail.jsp";
+                        }
+                        if (pstmt !=null){
+                           pstmt.close();
+                        }
+                        if (con != null) {
+                            con.close();
+                        }
+            }
             rd = request.getRequestDispatcher(jspPage);
             rd.forward(request, response);
         

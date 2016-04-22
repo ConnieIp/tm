@@ -18,6 +18,7 @@
     </head>
     <body>
         <h1>Comment</h1>
+        <jsp:useBean id="User" type="allClass.User" scope="session" />
         <table>
             <tr>
                 <td>Comment ID</td>
@@ -33,14 +34,16 @@
                     <td>${entry.userID}</td>
                     <td>${entry.date}</td>
                     <td>${entry.comment}</td>
+                    <c:if test="${User.userRole eq 'admin' or entry.userID eq User.userId}">
                     <td><form method='POST' action='comment' >
                     <input name='action' type='hidden' value='delComment' />
                     <input name='toyid' type='hidden' value='${entry.toyid}' />
                     <input name='CommentID' type='hidden' value='${entry.commentID}' />
                     <input type='submit' value='Delete' />
                         </form></td>
+                        </c:if>
                     </tr>
-                    
+                
                     <c:forEach var="entry2" items="${replies}" varStatus="iter">
                         <c:if test="${entry2.commentID == entry.commentID}">
                         <tr>
@@ -49,6 +52,7 @@
                     <td>${entry2.mgrID}</td>
                     <td> / </td>
                     <td>${entry2.reply}</td>
+                    <c:if test="${User.userRole eq 'admin'}">
                     <td><form method='POST' action='comment' >
                     <input name='action' type='hidden' value='delReply' />
                     <input name='toyid' type='hidden' value='${entry.toyid}' />
@@ -56,9 +60,11 @@
                     <input name='ReplyID' type='hidden' value='${entry2.replyID}' />
                     <input type='submit' value='Delete' />
                         </form></td>
+                    </c:if>
                     </tr>
                         </c:if>
                     </c:forEach>
+                    <c:if test="${User.userRole eq 'admin'}">
                 <tr><td colspan="5"><form method='POST' action='comment' >
 			<input name='action' type='hidden' value='addreply' />
                         <input name='toyid' type='hidden' value='${entry.toyid}' />
@@ -67,8 +73,11 @@
 			<input type='submit' value='Submit' />
                     </form></td>
                     
+                    
                 </tr>
-                
+                    </c:if>
+                <tr><td colspan="5">----------------------------------------------------------------------------------------------------------------------------------------------------</td></tr>
+                    
             </c:forEach>
                 
         </table>
