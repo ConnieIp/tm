@@ -88,6 +88,9 @@
             </c:when>
             <c:otherwise>
                 <a href='controller?action=recycleToy'>Recycle your Toy!</a>
+                <br/><a href='shoppingCart?action=lookup'>Cart</a>
+                <br/><a href='accountController?action=check'>Account Information</a>
+                <br/><a href='controller?action=deposit'>Deposit</a>
             </c:otherwise>
         </c:choose>
         <br/>

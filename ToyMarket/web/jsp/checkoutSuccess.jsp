@@ -39,6 +39,9 @@
                     <tr>
                         <td>Date</td><td>${aTransaction.date}</td><td></td>
                     </tr>
+                    <tr>
+                        <td>User Balance</td><td>${balance}</td><td></td>
+                    </tr>
                 </table>
             </fieldset>
         </form>

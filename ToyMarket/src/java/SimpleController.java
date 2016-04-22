@@ -89,6 +89,9 @@ public class SimpleController extends HttpServlet {
 		else if ("recycleToy".equals(action)) {
 			jspPage = "/jsp/recycleToy.jsp";
 		}
+                else if ("deposit".equals(action)) {
+			jspPage = "/jsp/deposit.jsp";
+		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(jspPage);
 		rd.forward(request, response);

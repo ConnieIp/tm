@@ -48,7 +48,7 @@ public class ManageRecycleServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
         User aUser = (User) session.getAttribute("User");
-        String dispatchPath = "index.jspx";
+        String dispatchPath = "controller?action=browse&amp;category=all";
         try {
             String action = request.getParameter("action");
             if (aUser.getUserRole().equals("admin")) {

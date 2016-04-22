@@ -16,6 +16,7 @@
         <h1>Toy Info</h1>
         <form>
             <fieldset>
+                <jsp:useBean id="User" type="allClass.User" scope="session" />
                 <jsp:useBean id="Toy" type="allClass.Toy" scope="request" />
                 <legend>Toy Info</legend>
                 <table>
@@ -44,7 +45,9 @@
                         <td>Img:</td><td><jsp:getProperty name="Toy" property="imgPath" /></td>
                     </tr>
                 </table>
+                        <c:if test="${User.userRole eq 'user'}">
                 <br/><a href='shoppingCart?action=add&amp;toyid=<jsp:getProperty name="Toy" property="toyid" />'>Add to Cart</a>
+                        </c:if>
                 <br/><a href='controller?action=browse&amp;category=all'>Back to Toy Directory</a>
             </fieldset>
         </form>

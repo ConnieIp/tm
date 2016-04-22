@@ -86,6 +86,10 @@
         <servlet-name>ManageRecycleServlet</servlet-name>
         <servlet-class>ManageRecycleServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>accountController</servlet-name>
+        <servlet-class>accountController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SimpleController</servlet-name>
         <url-pattern>/controller</url-pattern>
@@ -133,6 +137,10 @@
     <servlet-mapping>
         <servlet-name>CommentController</servlet-name>
         <url-pattern>/comment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>accountController</servlet-name>
+        <url-pattern>/accountController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

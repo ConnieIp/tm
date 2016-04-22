@@ -47,7 +47,15 @@ public class ShoppingCartController extends HttpServlet {
         try {
             String action = request.getParameter("action");
             String dispatchPath = "/index.jspx";
-            if ("add".equals(action)) {
+            if ("lookup".equals(action)){
+                if (session.getAttribute("cart") == null)
+                    request.setAttribute("Empty", "empty");
+                else
+                    request.setAttribute("Empty", "notempty");
+                
+                dispatchPath = "/jsp/shoppingCart.jsp";
+            }
+            else if ("add".equals(action)) {
                 int toyid = Integer.parseInt(request.getParameter("toyid"));
                 Toy newToy = ToyMarketLookup.getToy(toyid);
                 request.setAttribute("newToy", newToy);
@@ -66,7 +74,7 @@ public class ShoppingCartController extends HttpServlet {
                 //add num of Items to numOfItems
                 cart.setNumOfItems(cart.getNumOfItems()+1); //may change num to be flexible later
                 session.setAttribute("cart", cart);
-                
+                request.setAttribute("Empty", "add");
                 dispatchPath = "/jsp/shoppingCart.jsp";
             } else if ("clear".equals(action)) {
                 if (session.getAttribute("cart") != null) {

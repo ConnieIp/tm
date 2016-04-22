@@ -13,9 +13,13 @@
     </head>
     <body>
         <h1>Shopping Cart</h1>
+        <jsp:useBean id="Empty" type="java.lang.String" scope="request" />
+        <c:if test="${Empty ne 'empty'}">
         <jsp:useBean id="cart" type="allClass.ShoppingCart" scope="session" />
-        <jsp:useBean id="newToy" type="allClass.Toy" scope="request" />
-        <p>${newToy.toyname} is added to shopping cart sucessfully.</p>
+            <c:if test="${Empty eq 'add'}">
+               <jsp:useBean id="newToy" type="allClass.Toy" scope="request" />
+                <p>${newToy.toyname} is added to shopping cart sucessfully.</p>
+            </c:if>
         <form action="" method="post">
             <fieldset>
                 <legend>Shopping Cart</legend>
@@ -41,6 +45,7 @@
         </form>
         <br/><a href='shoppingCart?action=clear'>Clear Cart</a>
         <br/><a href='checkout'>Checkout!</a>
+        </c:if>
         <br/><a href='controller?action=browse&amp;category=all'>Back to Toy Directory</a>
     </body>
 </html>

@@ -61,6 +61,7 @@ public class CheckoutController extends HttpServlet {
                                                                     "VALUES (?, ?, ?)");
                 PreparedStatement pstmt_insertRecycle = con.prepareStatement("INSERT INTO [UserRecycleBalance]([USERID], [Balance]) " + 
                                                                     "VALUES (?, ?)");
+                PreparedStatement pstmt_updateBalance = con.prepareStatement("UPDATE [UserBalance] SET [Balance] = ? WHERE [UserID] = ? ");
                 pstmt_insertRecycle.setString(1, user.getUserId());
                 pstmt_insertTransact.setString(1, user.getUserId());
                 ShoppingCart cart = (ShoppingCart)session.getAttribute("cart");
@@ -89,6 +90,23 @@ public class CheckoutController extends HttpServlet {
                         float toyRecyclePrice = aToy.getPrice();
                         pstmt_insertRecycle.setString(2, ""+toyRecyclePrice);
                         pstmt_insertRecycle.executeUpdate();
+                        //add to owner's balance
+                        PreparedStatement pstmt_selectBalance = con.prepareStatement("SELECT * FROM [UserBalance] WHERE [UserID] = ?");
+                        String owner=aToy.getOwner();
+                        pstmt_selectBalance.setString(1, owner);
+                        ResultSet rs_balance = pstmt_selectBalance.executeQuery();
+                        if (rs_balance != null && rs_balance.next() != false) {
+                            float ownerBalance = rs_balance.getFloat("Balance");
+                            pstmt_updateBalance.setFloat(1, ownerBalance+aToy.getPrice());
+                            pstmt_updateBalance.setString(2,owner);
+                            pstmt_updateBalance.executeUpdate();
+                        }
+                        if (rs_balance != null){
+                            rs_balance.close();
+                        }
+                        if  (pstmt_selectBalance !=null){
+                            pstmt_selectBalance.close();
+                        }
                     }
                     
                     i++;
@@ -115,6 +133,24 @@ public class CheckoutController extends HttpServlet {
                 aTransaction.setCart(cart);
                 aTransaction.setDate(recordDate);
                 
+                //decrease balance of user
+                PreparedStatement pstmt_selectBalance = con.prepareStatement("SELECT * FROM [UserBalance] WHERE [UserID] = ?");
+                float usrBalance = -9999999;
+                        pstmt_selectBalance.setString(1, user.getUserId());
+                        ResultSet rs_balance = pstmt_selectBalance.executeQuery();
+                        if (rs_balance != null && rs_balance.next() != false) {
+                            usrBalance = rs_balance.getFloat("Balance");
+                            pstmt_updateBalance.setDouble(1, usrBalance-cart.getTotal());
+                            pstmt_updateBalance.setString(2,user.getUserId());
+                            pstmt_updateBalance.executeUpdate();
+                        }
+                        if (rs_balance != null){
+                            rs_balance.close();
+                        }
+                        if  (pstmt_selectBalance !=null){
+                            pstmt_selectBalance.close();
+                        }
+                request.setAttribute("balance", usrBalance-cart.getTotal());         
                 request.setAttribute("aTransaction", aTransaction);
 
                 session.removeAttribute("cart"); //remove cart  after checkout
@@ -127,6 +163,12 @@ public class CheckoutController extends HttpServlet {
                 }
                 if (pstmt_insertRecycle != null) {
                     pstmt_insertTransact.close();
+                }
+                if (pstmt_updateBalance !=null){
+                    pstmt_updateBalance.close();
+                }
+                if  (pstmt_selectBalance !=null){
+                    pstmt_selectBalance.close();
                 }
                 if (con != null) {
                     con.close();
