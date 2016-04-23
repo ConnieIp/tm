@@ -30,7 +30,7 @@ import javax.sql.DataSource;
  *
  * @author samsung-pc
  */
-public class accountController extends HttpServlet {
+public class AccountController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -129,9 +129,9 @@ public class accountController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(accountController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(accountController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -149,9 +149,9 @@ public class accountController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (NamingException ex) {
-            Logger.getLogger(accountController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(accountController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

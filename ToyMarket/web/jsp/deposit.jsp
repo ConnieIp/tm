@@ -13,7 +13,7 @@
         <title>Deposit</title>
     </head>
     <body>
-        <h1>Drposit</h1>
+        <h1>Deposit</h1>
         <div style='width:600px'>
         <fieldset>
 			
