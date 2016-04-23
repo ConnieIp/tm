@@ -87,8 +87,8 @@
         <servlet-class>ManageRecycleServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>accountController</servlet-name>
-        <servlet-class>accountController</servlet-class>
+        <servlet-name>AccountController</servlet-name>
+        <servlet-class>AccountController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SimpleController</servlet-name>
@@ -139,7 +139,7 @@
         <url-pattern>/comment</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>accountController</servlet-name>
+        <servlet-name>AccountController</servlet-name>
         <url-pattern>/accountController</url-pattern>
     </servlet-mapping>
     <session-config>
