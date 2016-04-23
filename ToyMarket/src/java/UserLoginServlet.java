@@ -46,12 +46,13 @@ public class UserLoginServlet extends HttpServlet {
             out.println("<title>Login Page</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Login</h1>");
+            out.println("<h1>Toy Market</h1>");
+            out.println("<h2>Login</h2>");
             
             String name=request.getParameter("name");
             String password=request.getParameter("password");
             String role=request.getParameter("role");
-out.println("<p>"+name+password+role+"</p>");
+//out.println("<p>"+name+password+role+"</p>");
                         String userid = "";
 			String userpw = "";
 			String usergp = "";
@@ -68,7 +69,7 @@ out.println("<p>"+name+password+role+"</p>");
                                 if (rs1 != null  && rs1.next() != false){
 					userid = rs1.getString("UserID");
                                 }
-out.println("<p>"+userid+"</p>");                                
+//out.println("<p>"+userid+"</p>");                                
                                 PreparedStatement pstmt = con.prepareStatement("SELECT * FROM [UserLogin] WHERE [Username] = ? ");
                                 pstmt.setString(1, name);
                                 ResultSet rs = pstmt.executeQuery();
@@ -111,6 +112,7 @@ out.println("<p>"+userid+"</p>");
         out.println("<p><input type='submit' value='Login' /></p>");
         
         out.println("</form>");
+        out.println("<br/><a href="+request.getContextPath()+"/jsp/register.jsp>No account? Create here!</a>");
         }
 	
             

@@ -34,7 +34,8 @@ public class LoginServlet extends HttpServlet {
         out.println("  <title>Login Page</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h1>Login Page</h1>");
+        out.println("<h1>Toy Market</h1>");
+        out.println("<h2>Login Page</h2>");
 		String usergp="";
                 String gppw="";
 		HttpSession session=request.getSession();

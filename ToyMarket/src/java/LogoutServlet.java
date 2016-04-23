@@ -27,7 +27,8 @@ public class LogoutServlet extends HttpServlet {
             out.println("  <title>Logout Page</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Logout Page</h1>");
+            out.println("<h1>Toy Market</h1>");
+            out.println("<h2>Logout Page</h2>");
             out.println("<p>You have successfully logged out!</p>");
             out.println("<p>Return to <a href='userLogin.do'>index page</a> (re-login required)</p>");
             out.println("</form>");

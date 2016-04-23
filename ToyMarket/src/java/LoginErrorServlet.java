@@ -23,7 +23,8 @@ public class LoginErrorServlet extends HttpServlet {
             out.println("  <title>Login Error Page</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1 style='color: #FF0000;'>Login Error Page</h1>");
+            out.println("<h1>Toy Market</h1>");
+            out.println("<h2 style='color: #FF0000;'>Login Error Page</h2>");
             out.println("<p>Your input was invalid!</p>");
             out.println("<p>User name: " + this.htmlEncode(request.getParameter("name")) + "</p>");
             out.println("<p>Password: " + this.htmlEncode(request.getParameter("password")) + "</p>");

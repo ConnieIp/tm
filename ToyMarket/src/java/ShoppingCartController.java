@@ -57,6 +57,7 @@ public class ShoppingCartController extends HttpServlet {
             }
             else if ("add".equals(action)) {
                 int toyid = Integer.parseInt(request.getParameter("toyid"));
+                int buyQty = Integer.parseInt(request.getParameter("buyqty"));
                 Toy newToy = ToyMarketLookup.getToy(toyid);
                 request.setAttribute("newToy", newToy);
                 ShoppingCart cart;
@@ -67,12 +68,12 @@ public class ShoppingCartController extends HttpServlet {
                 }
                 //add toy to cart
                 HashMap<Toy,Integer> toys = cart.getToys();
-                toys.put(newToy, 1); //the qty selected may be changed later
+                toys.put(newToy, buyQty); //the qty selected may be changed later
                 cart.setToys(toys);
                 //add price to total
-                cart.setTotal(cart.getTotal()+newToy.getPrice());
+                cart.setTotal(cart.getTotal()+newToy.getPrice()*buyQty);
                 //add num of Items to numOfItems
-                cart.setNumOfItems(cart.getNumOfItems()+1); //may change num to be flexible later
+                cart.setNumOfItems(cart.getNumOfItems()+buyQty); //may change num to be flexible later
                 session.setAttribute("cart", cart);
                 request.setAttribute("Empty", "add");
                 dispatchPath = "/jsp/shoppingCart.jsp";

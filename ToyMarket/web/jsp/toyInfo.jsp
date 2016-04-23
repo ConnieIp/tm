@@ -13,8 +13,9 @@
         <title>Toy Info</title>
     </head>
     <body>
-        <h1>Toy Info</h1>
-        <form>
+        <h1>Toy Market</h1>
+        <h2>Toy Information</h2>
+        
             <fieldset>
                 <jsp:useBean id="User" type="allClass.User" scope="session" />
                 <jsp:useBean id="Toy" type="allClass.Toy" scope="request" />
@@ -45,12 +46,18 @@
                         <td>Img:</td><td><jsp:getProperty name="Toy" property="imgPath" /></td>
                     </tr>
                 </table>
-                        <c:if test="${User.userRole eq 'user'}">
-                <br/><a href='shoppingCart?action=add&amp;toyid=<jsp:getProperty name="Toy" property="toyid" />'>Add to Cart</a>
+                    
+                    <c:if test="${User.userRole eq 'user'}">
+                        <form method='POST' action='shoppingCart'>
+                <input name='action' type='hidden' value='add' />
+                <input name='toyid' type='hidden' value='<jsp:getProperty name="Toy" property="toyid" />' />
+                <p>Qty: <input name='buyqty' type='number' value='' min='1'/></p>
+                <input type='submit' value='Add to Cart' />
+                        </form>
                         </c:if>
                 <br/><a href='controller?action=browse&amp;category=all'>Back to Toy Directory</a>
             </fieldset>
-        </form>
+        
         <div>
             <jsp:include page="include/comment.jsp" />
             <form method='POST' action='comment' >

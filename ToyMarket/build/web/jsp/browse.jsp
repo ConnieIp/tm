@@ -15,7 +15,8 @@
     <title>Browse toy</title>
     </head>
     <body>
-        <h1>Browse Toy</h1>
+        <h1>Toy Market</h1>
+        <h2>Browse Toy</h2>
         <div style='width:600px'>
             <!-- create bean for getting user information -->
             <jsp:useBean id="User" type="allClass.User" scope="session" />

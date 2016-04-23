@@ -38,7 +38,7 @@ public class HomeServlet extends HttpServlet {
             out.println("  <title>Index Page</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Index Page</h1>");
+            out.println("<h1>Toy Market</h1>");
             out.println("<p>Welcome, "+session.getAttribute("name")+"</p>");
             out.println("<p>You login as " + (request.isUserInRole("admin") != false ? "Manager role" : "User role") + "  .</p>");
             out.println("<p>(accessed " + ((session.getAttribute("magic") != null) ? (Integer)session.getAttribute("magic") : "0") + " times)</p>");
