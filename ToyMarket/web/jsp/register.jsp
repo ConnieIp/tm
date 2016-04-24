@@ -16,7 +16,7 @@
         <jsp:include page="include/note.jsp" />
         <h1>Toy Market</h1>
         <h2>Register</h2>
-        <div style='width:600px'>
+        <div style='width:100%'>
         <fieldset>
             <legend>Please fill in account information</legend>
             <form method='POST' action='../accountController'>
