@@ -35,6 +35,8 @@ public class LoginServlet extends HttpServlet {
         out.println(" <link rel=\"stylesheet\" href=\"css/general.css\" type=\"text/css\" />");
         out.println("</head>");
         out.println("<body>");
+        String pagename="/jsp/include/note.jsp";
+            request.getRequestDispatcher(pagename).include(request, response);
         out.println("<h1>Toy Market</h1>");
         out.println("<h2>Login Page</h2>");
 		String usergp="";
@@ -67,6 +69,7 @@ public class LoginServlet extends HttpServlet {
 					out.println("  <p><input type='submit' value='Login' /></p>");
 					out.println("</form>");
                                         out.println("<script>formSubmit();</script>");
+            request.getRequestDispatcher(pagename).include(request, response);
 			out.println("</body>");
 			out.println("</html>");
             out.close();

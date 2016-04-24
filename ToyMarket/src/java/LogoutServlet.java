@@ -28,10 +28,13 @@ public class LogoutServlet extends HttpServlet {
             out.println(" <link rel=\"stylesheet\" href=\"css/general.css\" type=\"text/css\" />");
             out.println("</head>");
             out.println("<body>");
+            String pagename="/jsp/include/note.jsp";
+            request.getRequestDispatcher(pagename).include(request, response);
             out.println("<h1>Toy Market</h1>");
             out.println("<h2>Logout Page</h2>");
             out.println("<p>You have successfully logged out!</p>");
             out.println("<p>Return to <a href='userLogin.do'>index page</a> (re-login required)</p>");
+            request.getRequestDispatcher(pagename).include(request, response);
             out.println("</form>");
             out.println("</body>");
             out.println("</html>");

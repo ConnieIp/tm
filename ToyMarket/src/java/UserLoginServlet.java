@@ -48,6 +48,8 @@ public class UserLoginServlet extends HttpServlet {
             out.println(" <link rel=\"stylesheet\" href=\"css/general.css\" type=\"text/css\" />");
             out.println("</head>");
             out.println("<body>");
+            String pagename="/jsp/include/note.jsp";
+            request.getRequestDispatcher(pagename).include(request, response);
             out.println("<h1>Toy Market</h1>");
             out.println("<h2>Login</h2>");
             
@@ -122,6 +124,7 @@ public class UserLoginServlet extends HttpServlet {
 	
             
             out.println("</body>");
+            request.getRequestDispatcher(pagename).include(request, response);
             out.println("</html>");
         }catch (ClassNotFoundException ex) {
             Logger.getLogger(UserLoginServlet.class.getName()).log(Level.SEVERE, null, ex);

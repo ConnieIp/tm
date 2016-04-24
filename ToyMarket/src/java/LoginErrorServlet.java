@@ -24,6 +24,8 @@ public class LoginErrorServlet extends HttpServlet {
             out.println(" <link rel=\"stylesheet\" href=\"css/general.css\" type=\"text/css\" />");
             out.println("</head>");
             out.println("<body>");
+            String pagename="/jsp/include/note.jsp";
+            request.getRequestDispatcher(pagename).include(request, response);
             out.println("<h1>Toy Market</h1>");
             out.println("<h2 style='color: #FF0000;'>Login Error Page</h2>");
             out.println("<p>Your input was invalid!</p>");
@@ -32,6 +34,7 @@ public class LoginErrorServlet extends HttpServlet {
             out.println("<p>gpUser name: " + this.htmlEncode(request.getParameter("j_username")) + "</p>");
             out.println("<p>gpPassword: " + this.htmlEncode(request.getParameter("j_password")) + "</p>");
             out.println("<p><a href='javascript:history.back(1)'>Try again!</a></p>"); //back 2?
+            request.getRequestDispatcher(pagename).include(request, response);
             out.println("</body>");
             out.println("</html>");
         } finally { 
