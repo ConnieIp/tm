@@ -1,0 +1,46 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2016年4月24日, 下午07:17:02
+    Author     : samsung-pc
+*/
+
+*{
+    background-color: #CEECF5;
+    
+}
+
+h1{
+    font: 3.0em Rockwell,Verdana, Arial, Helvetica, sans-serif;
+    text-align: Left;
+    letter-spacing: .2em;
+    color: #F3F781;
+    transition: 1s linear;
+    -webkit-transition: 1s linear;
+}
+
+h1:hover {
+    color: #004080;
+}
+
+h2{
+    font: 2em Calibri, Verdana, Arial, Helvetica, sans-serif;
+    color: #000000;
+    letter-spacing: .1em;
+}
+
+#img{
+    height: 200px;
+    width: 200px;
+}
+
+input{
+    background-color: #FFFFFF;
+}
+
+a{
+    font: 1em Calibri,Verdana, Arial;
+}

@@ -15,9 +15,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Comment</title>
+        <link rel="stylesheet" href="../css/general.css" type="text/css" />
     </head>
     <body>
-        <h1>Comment</h1>
+        <h2>Comment</h2>
         <jsp:useBean id="User" type="allClass.User" scope="session" />
         <table>
             <tr>

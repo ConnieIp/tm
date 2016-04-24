@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Shopping Cart Clear</title>
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
         <h1>Shopping Cart Cleared Successfully!</h1>

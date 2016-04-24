@@ -11,9 +11,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Deposit</title>
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
-        <h1>Deposit</h1>
+        <h1>Toy Market</h1>
+        <h2>Deposit</h2>
         <div style='width:600px'>
         <fieldset>
 			

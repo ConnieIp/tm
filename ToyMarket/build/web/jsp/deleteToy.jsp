@@ -9,10 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Update Toy</title>
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
-        <h1>Update Toy</h1>
+        <h1>Toy Market</h1>
+        <h2>Update Toy</h2>
         <div style='width:600px'>
         <fieldset>
             <jsp:useBean id="Toy" type="allClass.Toy" scope="request" />

@@ -43,7 +43,8 @@ public class UserLoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Login Page</title>");            
+            out.println("<title>Login Page</title>");      
+            out.println(" <link rel=\"stylesheet\" href=\"css/general.css\" type=\"text/css\" />");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Toy Market</h1>");

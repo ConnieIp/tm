@@ -10,9 +10,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Checkout Fail</title>
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
-        <h1>Checkout Fail</h1>
+        <h1>Toy Market</h1>
+        <h2>Checkout Fail</h2>
         <h2>Oops! Your shopping cart is empty or you encountered some errors!</h2>
         <br/><a href='controller?action=browse&amp;category=all'>Back to Toy Directory</a>
     </body>

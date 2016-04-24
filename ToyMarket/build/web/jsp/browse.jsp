@@ -13,33 +13,104 @@
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Browse toy</title>
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
+    <style type="text/css">
+        h2{
+            float:left;
+        }
+        #name{
+            font-size: 1.2em;
+            text-align: right;
+            margin-right:10px;
+        }
+        #action p{
+            text-align: right;
+        }
+        #browse{
+            width:100%;
+            float:left;
+        }
+        .action{
+            font: 1em Verdana, Arial, Helvetica, sans-serif;
+            text-align: center;
+            letter-spacing: .1em;
+            padding:0px 10px 0px 10px;
+            border: 2px solid;
+            border-color: #B0C4DE;
+            border-radius: 24px 24px 24px 24px;
+            background-color: #B0C4DE;
+        }
+        .action:hover{
+            background-color: #A9E2F3;
+            border-color: #A9E2F3;
+        }
+        .category{
+            font-size:1.1em;
+            padding:0px 10px 0px 10px;
+            text-align: center;
+            letter-spacing: .1em;
+            border: 2px solid;
+            border-color: #A9E2F3;
+            border-radius: 10px 10px 0px 0px;
+            background-color: #A9E2F3;
+        }
+        .category:hover{
+            background-color: #B0C4DE;
+            border-color: #B0C4DE;
+            transform: scale(1.2,1.2);
+            -webkit-transform: scale(1.2, 1.2);
+        }
+        #list th{
+            background-color: #A9E2F3;
+            
+        }        
+    </style>
     </head>
     <body>
         <h1>Toy Market</h1>
         <h2>Browse Toy</h2>
-        <div style='width:600px'>
-            <!-- create bean for getting user information -->
-            <jsp:useBean id="User" type="allClass.User" scope="session" />
-            <p>Hi, <jsp:getProperty name="User"  property="userName" />!</p>
+        <jsp:useBean id="User" type="allClass.User" scope="session" />
+        <p id='name'>Hi, <jsp:getProperty name="User"  property="userName" />!<p>    
+        <div id='action'>
+            <p>    
+            <c:choose>
+            <c:when test='${User.userRole == "admin"}'>
+                <a class='action' href='controller?action=addToy'>Add a New Toy</a>
+                <a class='action' href='manageRecycle?action=browse'>Manage Toy Recycle Applications</a>
+            </c:when>
+            <c:otherwise>
+                <a class='action' href='controller?action=recycleToy'>Recycle your Toy!</a>
+                <a class='action' href='shoppingCart?action=lookup'>Cart</a>
+                <a class='action' href='accountController?action=check'>Account Information</a>
+                <a class='action' href='controller?action=deposit'>Deposit</a>
+            </c:otherwise>
+        </c:choose>
+                <a class='action' href='logout.do'>Logout</a>
+            </p>
+        </div>
+            
+        <div id='browse'>
         <fieldset>
         <legend>Toy Directoy</legend>
+        <%
+                //get ArrayList of all toys in the selected category in ToyMarket
+                ArrayList<Toy> toys = (ArrayList<Toy>)request.getAttribute("ToyMarket");
+            %> 
+        <p style='float:left'>Category: <%= (String) request.getAttribute("Category") %> </p>
+        <p style='text-align:right'>Total <%= toys.size() %> entries.</p>
         <!-- selecting category, link to SimpleControllerServlet (with parameter: action, category) -->
         <table>
             <tr>
-                <td><a href='controller?action=browse&amp;category=all'>All</a></td>
-                <td><a href='controller?action=browse&amp;category=girl'>girl</a></td>
-                <td><a href='controller?action=browse&amp;category=boy'>boy</a></td>
-                <td><a href='controller?action=browse&amp;category=baby'>baby</a></td>
-                <td><a href='controller?action=browse&amp;category=child'>child</a></td>
+                <td><a class='category' href='controller?action=browse&amp;category=all'>All</a></td>
+                <td><a class='category' href='controller?action=browse&amp;category=girl'>Girl</a></td>
+                <td><a class='category' href='controller?action=browse&amp;category=boy'>Boy</a></td>
+                <td><a class='category' href='controller?action=browse&amp;category=baby'>Baby</a></td>
+                <td><a class='category' href='controller?action=browse&amp;category=child'>Child</a></td>
             </tr>
 	</table>
-            <%
-                //get ArrayList of all toys in the selected category in ToyMarket
-                ArrayList<Toy> toys = (ArrayList<Toy>)request.getAttribute("ToyMarket");
-            %>  
-        <p>Category: <%= (String) request.getAttribute("Category") %> </p>
-        <p>Total <%= toys.size() %> entries.</p>
-        <div><table style='width:100%'>
+             
+        
+        <div id='list'><table style='width:100%'>
         <thead>
         <th align='left'>ToyID</th><th align='left'>Name</th><th align='left'>Type</th><th align='left'>Qty</th><th align='left'>Toy Price</th>
 		<%
@@ -80,22 +151,10 @@
         %>
 			</tr>
         </tbody>
-        </table></div>
-        <br/>
-        <c:choose>
-            <c:when test='${User.userRole == "admin"}'>
-                <a href='controller?action=addToy'>Add a New Toy</a>
-                <br/><a href='manageRecycle?action=browse'>Manage Toy Recycle Applications</a>
-            </c:when>
-            <c:otherwise>
-                <a href='controller?action=recycleToy'>Recycle your Toy!</a>
-                <br/><a href='shoppingCart?action=lookup'>Cart</a>
-                <br/><a href='accountController?action=check'>Account Information</a>
-                <br/><a href='controller?action=deposit'>Deposit</a>
-            </c:otherwise>
-        </c:choose>
-        <br/>
-        <p><a href='logout.do'>Logout</a></p>
+            </table></div>
+        
+        
+        
         </fieldset>
         </div>
     </body>

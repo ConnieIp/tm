@@ -8,9 +8,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Manage Toy</title>
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
-        <h1>Delete Toy</h1>
+        <h1>Toy Market</h1>
+        <h2>Delete Toy</h2>
         <div style='width:600px'>
         <fieldset>
 		<jsp:useBean id="Toy" type="allClass.Toy" scope="request" />

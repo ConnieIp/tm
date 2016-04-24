@@ -13,9 +13,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Checkout</title>
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
-        <h1>Checkout Success</h1>
+        <h1>Toy Market</h1>
+        <h2>Checkout Success</h2>
         <form>
             <fieldset>
                 <legend>Details of Transaction</legend>

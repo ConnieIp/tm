@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Toy Info</title>
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
         <h1>Toy Market</h1>
@@ -43,7 +44,7 @@
                         <td>Price:</td><td><jsp:getProperty name="Toy" property="price" /></td>
                     </tr>
                     <tr>
-                        <td>Img:</td><td><jsp:getProperty name="Toy" property="imgPath" /></td>
+                        <td>Img:</td><td><img id="img" src="<jsp:getProperty name="Toy" property="imgPath" />" /></td>
                     </tr>
                 </table>
                     

@@ -48,9 +48,83 @@ public class AccountController extends HttpServlet {
         HttpSession session = request.getSession();
         String dispatchPath = "/index.jspx";
         try {
-            User user=(User)session.getAttribute("User");
             String action=request.getParameter("action");
-            if ("check".equalsIgnoreCase(action)){
+            if("create".equalsIgnoreCase(action)){
+                String name=request.getParameter("name");
+                String password=request.getParameter("password");
+                String confirmpw=request.getParameter("confirmpw");
+                
+                Context initCtx = new InitialContext();
+                Context envCtx = (Context)initCtx.lookup("java:comp/env");
+                DataSource ds = (DataSource)envCtx.lookup("jdbc/ToyMarket");
+                Connection con = ds.getConnection();
+                
+                PreparedStatement pstmt_check = con.prepareStatement("SELECT * FROM [UserLogin] WHERE [Username] = ?");
+                pstmt_check.setString(1,name);
+                ResultSet rs_check = pstmt_check.executeQuery();
+                if (rs_check != null && rs_check.next() != false) {
+                    request.setAttribute("errormsg","User name is already used.");
+                    dispatchPath = "/jsp/registerFail.jsp";
+                    if (pstmt_check!=null){
+                        pstmt_check.close();
+                    }
+                    if (rs_check!=null){
+                        rs_check.close();
+                    }
+                }
+                else if (!password.equals(confirmpw)){
+                    request.setAttribute("errormsg","Confirm password not match.");
+                    dispatchPath = "/jsp/registerFail.jsp";
+                    
+                }
+                else{
+                    PreparedStatement pstmt_select = con.prepareStatement("SELECT COUNT([UserID]) AS [UserCount] FROM [UserIDMap]");
+                    PreparedStatement pstmt_map = con.prepareStatement("INSERT INTO [UserIDMap] VALUES (?,?)");
+                    PreparedStatement pstmt_login = con.prepareStatement("INSERT INTO [UserLogin] VALUES (?,?,'user','user')");
+                    PreparedStatement pstmt_balance=con.prepareStatement("INSERT INTO [UserBalance] VALUES (?,0)");
+                    
+                    ResultSet rs = pstmt_select.executeQuery();
+                    if (rs != null && rs.next() != false) {
+                        int count=rs.getInt("UserCount");
+                        pstmt_map.setString(1,String.valueOf(count+1));
+                        pstmt_map.setString(2,name);
+                        pstmt_login.setString(1,name);
+                        pstmt_login.setString(2,password);
+                        pstmt_balance.setString(1,String.valueOf(count+1));
+                        int rows_login = pstmt_login.executeUpdate();
+                        int rows_map = pstmt_map.executeUpdate();
+                        int rows_balance = pstmt_balance.executeUpdate();
+                        if (rows_map >0 && rows_login >0 && rows_balance >0) {
+                            User user=new User(String.valueOf(count+1),name,password,"user");
+                            request.setAttribute("User",user);
+                            dispatchPath = "/jsp/registerSuccess.jsp";
+                        }else{
+                            request.setAttribute("errormsg","Fail to add account.");
+                            dispatchPath = "/jsp/registerFail.jsp";
+                        }
+                    }
+                    if (pstmt_select!=null){
+                        pstmt_select.close();
+                    }
+                    if (rs!=null){
+                        rs.close();
+                    }
+                    if (pstmt_login!=null){
+                        pstmt_login.close();
+                    }
+                    if (pstmt_map!=null){
+                        pstmt_map.close();
+                    }
+                    if (pstmt_balance!=null){
+                        pstmt_balance.close();
+                    }
+                    if (con!=null){
+                        con.close();
+                    }
+                }
+            }
+            else if ("check".equalsIgnoreCase(action)){
+                User user=(User)session.getAttribute("User");
                 Context initCtx = new InitialContext();
                 Context envCtx = (Context)initCtx.lookup("java:comp/env");
                 DataSource ds = (DataSource)envCtx.lookup("jdbc/ToyMarket");
@@ -67,6 +141,7 @@ public class AccountController extends HttpServlet {
                 dispatchPath = "/jsp/checkAccount.jsp";
             }
             else if ("deposit".equalsIgnoreCase(action)){
+                User user=(User)session.getAttribute("User");
                 String amount=request.getParameter("amount");
                 request.setAttribute("amount",amount);
                 

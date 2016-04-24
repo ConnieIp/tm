@@ -10,9 +10,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Comment</title>
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
-        <h1>Delete Reply</h1>
+        <h1>Toy Market</h1>
+        <h2>Delete Reply</h2>
         <div style='width:600px'>
         <fieldset>
             <jsp:useBean id="Reply" type="allClass.Reply" scope="request" />

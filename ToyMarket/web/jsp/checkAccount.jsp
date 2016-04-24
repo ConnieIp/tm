@@ -10,11 +10,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Account</title>
+        <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
         
         <jsp:useBean id="User" type="allClass.User" scope="session" />
-        <h1>Your Account</h1>
+        <h1>Toy Market</h1>
+        <h2>Your Account</h2>
         <div style='width:600px'>
         <fieldset>
             <legend>Account Information</legend>
