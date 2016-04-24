@@ -63,7 +63,12 @@
         #list th{
             background-color: #A9E2F3;
             
-        }        
+        }
+
+        .toyImg {
+            max-width:100%;
+            height:auto;
+        }
     </style>
     </head>
     <body>
@@ -113,7 +118,20 @@
         
         <div id='list'><table style='width:100%'>
         <thead>
-        <th align='left'>ToyID</th><th align='left'>Name</th><th align='left'>Type</th><th align='left'>Qty</th><th align='left'>Toy Price</th>
+        <th align='left' style="width:15%;">
+            <c:choose>
+                <c:when test='${User.userRole == "admin"}'>
+                    ToyID
+                </c:when>
+                <c:otherwise>
+                    Toy Image
+                </c:otherwise>
+            </c:choose>
+        </th>
+        <th align='left'>Name</th>
+        <th align='left'>Type</th>
+        <th align='left'>Qty</th>
+        <th align='left'>Toy Price</th>
 		<%
 			if(((String) session.getAttribute("role")).equalsIgnoreCase("admin")){
 		%>
@@ -128,7 +146,14 @@
 		%>
 			<tr>
                                 <td>
-				<%= toy.getToyid() %>				
+                                <c:choose>
+                                    <c:when test='${User.userRole == "admin"}'>
+                                        <%=toy.getToyid()%>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img class='toyImg' src='<%=toy.getImgPath()%>' />
+                                    </c:otherwise>	
+                                </c:choose>
 				</td>
                                 <td>
 				<a href="controller?action=toyInfo&amp;toyid=<%= toy.getToyid() %>">
