@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
+        <jsp:include page="include/note.jsp" />
         <h1>Toy Market</h1>
         <h2>Deposit</h2>
         <div style='width:600px'>
@@ -44,5 +45,7 @@
             <br/><a href='controller?action=browse&amp;category=all'>Back to Toy Directory</a>
         </fieldset>
         </div>
+        <br/>
+        <jsp:include page="include/note.jsp" />
     </body>
 </html>

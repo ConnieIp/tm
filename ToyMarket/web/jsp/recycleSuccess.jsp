@@ -13,7 +13,9 @@
         <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
-        <h1>Recycle Application Success!</h1>
+        <jsp:include page="include/note.jsp" />
+        <h1>Toy Market</h1>
+        <h2>Recycle Application Success!</h2>
         <form>
             <fieldset>
                 <legend>Recycle Application Success</legend>
@@ -22,5 +24,7 @@
             </fieldset>
         </form>
         <br/><a href='controller?action=browse&amp;category=all'>Back to Toy Directory</a>
+        <br/>
+        <jsp:include page="include/note.jsp" />
     </body>
 </html>

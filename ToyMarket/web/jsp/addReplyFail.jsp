@@ -14,7 +14,9 @@
         <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
-        <h1>Add Reply</h1>
+        <jsp:include page="include/note.jsp" />
+        <h1>Toy Market</h1>
+        <h2>Add Reply</h2>
         <div style='width:600px'>
         <fieldset>
             <jsp:useBean id="Reply" type="allClass.Reply" scope="request" />
@@ -27,6 +29,8 @@
                         <p><a href='controller?action=toyInfo&amp;toyid=<jsp:getProperty name="Reply" property="toyid" />' >Back to Toy Info Page</a></p>
         </fieldset>
         </div>
+        <br/>
+        <jsp:include page="include/note.jsp" />
     </body>
 </html>
 

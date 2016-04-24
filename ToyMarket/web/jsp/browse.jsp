@@ -67,6 +67,7 @@
     </style>
     </head>
     <body>
+        <jsp:include page="include/note.jsp" />
         <h1>Toy Market</h1>
         <h2>Browse Toy</h2>
         <jsp:useBean id="User" type="allClass.User" scope="session" />
@@ -156,6 +157,8 @@
         
         
         </fieldset>
+                        <br/>
         </div>
+        <jsp:include page="include/note.jsp" />
     </body>
 </html>

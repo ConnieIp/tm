@@ -12,9 +12,10 @@
         <title>Deposit</title>
         <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
-    <body>
+    <body><jsp:include page="include/note.jsp" />
         <jsp:useBean id="User" type="allClass.User" scope="session" />
-        <h1>Deposit Fail</h1>
+        <h1>Toy Market</h1>
+        <h2>Deposit Fail</h2>
         <div style='width:600px'>
         <fieldset>
             <legend>The ${amount} is fail to add.</legend>
@@ -23,5 +24,7 @@
                         <p><a href='controller?action=browse&amp;category=all' >Back to Toy directory</a></p>
         </fieldset>
         </div>
+                        <br/>
+                        <jsp:include page="include/note.jsp" />
     </body>
 </html>

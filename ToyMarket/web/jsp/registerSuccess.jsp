@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
+        <jsp:include page="include/note.jsp" />
         <h1>Toy Market</h1>
         <h1>Register</h1>
         <div style='width:600px'>
@@ -27,5 +28,7 @@
             <br/><a href='<%= request.getContextPath() %>/userLogin.do'>Back to Login Page</a>
         </fieldset>
         </div>
+        <br/>
+        <jsp:include page="include/note.jsp" />
     </body>
 </html>

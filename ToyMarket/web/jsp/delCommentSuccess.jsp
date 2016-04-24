@@ -13,7 +13,7 @@
         <title>Comment</title>
         <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
-    <body>
+    <body><jsp:include page="include/note.jsp" />
         <h1>Toy Market</h1>
         <h2>Delete Comment</h2>
         <div style='width:600px'>
@@ -27,6 +27,8 @@
                         <p><a href='controller?action=toyInfo&amp;toyid=<jsp:getProperty name="Comment" property="toyid" />' >Back to Toy Info Page</a></p>
         </fieldset>
         </div>
+        <br/>
+        <jsp:include page="include/note.jsp" />
     </body>
 </html>
 

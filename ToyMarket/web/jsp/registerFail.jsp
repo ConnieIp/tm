@@ -13,8 +13,9 @@
         <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
+        <jsp:include page="include/note.jsp" />
         <h1>Toy Market</h1>
-        <h1>Register</h1>
+        <h2>Register</h2>
         <div style='width:600px'>
         <fieldset>
             <jsp:useBean id="errormsg" type="java.lang.String" scope="request" />
@@ -25,6 +26,8 @@
             <br/><a href='<%= request.getContextPath() %>/jsp/register.jsp'>Register Again</a>
         </fieldset>
         </div>
+        <br/>
+        <jsp:include page="include/note.jsp" />
     </body>
 </html>
 

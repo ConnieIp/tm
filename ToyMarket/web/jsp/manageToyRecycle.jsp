@@ -12,8 +12,9 @@
         <title>Manage Recycle Toy</title>
         <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
-    <body>
-        <h1>Manage Toy Recycle</h1>
+    <body><jsp:include page="include/note.jsp" />
+        <h1>Toy Market</h1>
+        <h2>Manage Toy Recycle</h2>
         <form method="post" action="manageRecycle">
             <fieldset>
                 <legend>Toy Recycle Request</legend>
@@ -54,5 +55,7 @@
             </fieldset>
         </form>
         <br/><a href='controller?action=browse&amp;category=all'>Back to Toy Directory</a>
+        <br/>
+        <jsp:include page="include/note.jsp" />
     </body>
 </html>

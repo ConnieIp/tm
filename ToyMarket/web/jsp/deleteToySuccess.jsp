@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
+        <jsp:include page="include/note.jsp" />
         <h1>Toy Market</h1>
         <h2>Delete Toy</h2>
         <div style='width:600px'>
@@ -25,6 +26,8 @@
                         <p><a href='controller?action=browse&amp;category=all' >Back to Toy directory</a></p>
         </fieldset>
         </div>
+                        <br/>
+                        <jsp:include page="include/note.jsp" />
     </body>
 </html>
 

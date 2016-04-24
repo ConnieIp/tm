@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="<%=request.getContextPath() %>/css/general.css" type="text/css" />
     </head>
     <body>
+        <jsp:include page="include/note.jsp" />
         <h1>Toy Market</h1>
         <h2>Toy Information</h2>
         
@@ -68,5 +69,7 @@
 			<input type='submit' value='Submit' />
             </form>
         </div>
+                        <br/>
+                        <jsp:include page="include/note.jsp" />
     </body>
 </html>

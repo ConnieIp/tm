@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import allClass.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -89,7 +90,10 @@ public class UserLoginServlet extends HttpServlet {
                                             session.setAttribute("userid",userid); //
                                             session.setAttribute("userpw",userpw);
                                             session.setAttribute("role", role);
-                                            response.sendRedirect("index.do");                                            
+                                            User user=new User((String)session.getAttribute("userid"),(String)session.getAttribute("name"),
+                                            (String)session.getAttribute("userpw"),(String)session.getAttribute("role"));
+                                            session.setAttribute("User",user);
+                                            response.sendRedirect("controller?action=browse&amp;category=all");                                            
                                         }else{
                                                 out.println("<p>Wrong Password/Role!</p>");
                                                 out.println("<p><a href='userLogin.do'>Retry</a></p>");
