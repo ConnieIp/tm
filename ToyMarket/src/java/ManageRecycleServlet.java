@@ -73,15 +73,20 @@ public class ManageRecycleServlet extends HttpServlet {
                     PreparedStatement pstmt_update_toymart = con.prepareStatement("UPDATE [TOYMARKET] SET [RECYCLE] = ? WHERE [TOYID] = ?");
                     for (Toy aToy: toysAppliedRecycle) {
                         String recycle_status = request.getParameter(""+aToy.getToyid());
-                        if ("".equals(recycle_status)) {
-                            recycle_status = "NULL";
-                        }
                         //update [TOYRECYCLEAPPLICATION] for toy recycle record
-                        pstmt_update_application.setString(1, recycle_status);
+                        if ("".equals(recycle_status)) {
+                            pstmt_update_application.setNull(1, java.sql.Types.CHAR);
+                        } else {
+                            pstmt_update_application.setString(1, recycle_status);
+                        }
                         pstmt_update_application.setString(2, aUser.getUserId());
                         pstmt_update_application.setInt(3, aToy.getToyid());
                         pstmt_update_application.executeUpdate();
-                        pstmt_update_toymart.setString(1, recycle_status);
+                        if ("".equals(recycle_status)) {
+                            pstmt_update_toymart.setNull(1, java.sql.Types.CHAR);
+                        } else {
+                            pstmt_update_toymart.setString(1, recycle_status);
+                        }
                         pstmt_update_toymart.setInt(2, aToy.getToyid());
                         pstmt_update_toymart.executeUpdate();
                     }

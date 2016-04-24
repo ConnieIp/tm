@@ -72,7 +72,7 @@ public class ApplyRecycleServlet extends HttpServlet {
                 pstmt_insertToyMkt.setString(6, qty);
                 pstmt_insertToyMkt.setString(7, price);
                 pstmt_insertToyMkt.setString(8, aUser.getUserId());
-                pstmt_insertToyMkt.setNull(9, java.sql.Types.CHAR);; //"Y": for recycle, "N":not for recycle, "NULL":not yet processed, "R": rejected recycle
+                pstmt_insertToyMkt.setNull(9, java.sql.Types.CHAR); //"Y": for recycle, "N":not for recycle, "NULL":not yet processed, "R": rejected recycle
 
                 pstmt_insertToyMkt.executeUpdate();
 
