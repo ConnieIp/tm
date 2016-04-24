@@ -53,7 +53,7 @@
                         <form method='POST' action='shoppingCart'>
                 <input name='action' type='hidden' value='add' />
                 <input name='toyid' type='hidden' value='<jsp:getProperty name="Toy" property="toyid" />' />
-                <p>Qty: <input name='buyqty' type='number' value='' min='1'/></p>
+                <p>Qty: <input name='buyqty' type='number' value='1' min='1'/></p>
                 <input type='submit' value='Add to Cart' />
                         </form>
                         </c:if>
